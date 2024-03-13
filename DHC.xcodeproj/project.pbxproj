@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16643BF82BA0975300D9B1C6 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643BF72BA0975300D9B1C6 /* AuthenticationManager.swift */; };
+		16643BFC2BA0980800D9B1C6 /* AuthDataResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643BFB2BA0980800D9B1C6 /* AuthDataResultModel.swift */; };
+		16643BFE2BA0987200D9B1C6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643BFD2BA0987200D9B1C6 /* UserManager.swift */; };
+		16643C002BA1780D00D9B1C6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643BFF2BA1780D00D9B1C6 /* UserModel.swift */; };
+		16643C022BA1790B00D9B1C6 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643C012BA1790B00D9B1C6 /* StorageManager.swift */; };
 		FF36E3CB2BA076330063D935 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FF36E3CA2BA076330063D935 /* FirebaseAnalytics */; };
 		FF36E3CD2BA076330063D935 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FF36E3CC2BA076330063D935 /* FirebaseAuth */; };
 		FF36E3CF2BA076330063D935 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FF36E3CE2BA076330063D935 /* FirebaseFirestore */; };
@@ -20,6 +25,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16643BF72BA0975300D9B1C6 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		16643BFB2BA0980800D9B1C6 /* AuthDataResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResultModel.swift; sourceTree = "<group>"; };
+		16643BFD2BA0987200D9B1C6 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		16643BFF2BA1780D00D9B1C6 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		16643C012BA1790B00D9B1C6 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		FFED5C892B986AFB0015F474 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFF04F0D2B97963E00D1F1CC /* DHC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DHC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF04F102B97963E00D1F1CC /* DHCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHCApp.swift; sourceTree = "<group>"; };
@@ -44,6 +54,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16643BF32BA096D200D9B1C6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		16643BF52BA096E900D9B1C6 /* DesignSystems */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DesignSystems;
+			sourceTree = "<group>";
+		};
+		16643BF62BA0970300D9B1C6 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				16643BFD2BA0987200D9B1C6 /* UserManager.swift */,
+				16643BF72BA0975300D9B1C6 /* AuthenticationManager.swift */,
+				16643C012BA1790B00D9B1C6 /* StorageManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		16643BFA2BA0978600D9B1C6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				16643BFB2BA0980800D9B1C6 /* AuthDataResultModel.swift */,
+				16643BFF2BA1780D00D9B1C6 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		FFE172AB2B99C9020029AC32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -71,10 +114,11 @@
 		FFF04F0F2B97963E00D1F1CC /* DHC */ = {
 			isa = PBXGroup;
 			children = (
+				16643BFA2BA0978600D9B1C6 /* Models */,
+				16643BF62BA0970300D9B1C6 /* Managers */,
+				16643BF52BA096E900D9B1C6 /* DesignSystems */,
+				16643BF32BA096D200D9B1C6 /* Models */,
 				FFED5C892B986AFB0015F474 /* GoogleService-Info.plist */,
-				FFF04F212B97979900D1F1CC /* Model */,
-				FFF04F202B97968500D1F1CC /* DataSources */,
-				FFF04F1F2B97967E00D1F1CC /* DesignSystem */,
 				FFF04F1E2B97967400D1F1CC /* Views */,
 				FFF04F102B97963E00D1F1CC /* DHCApp.swift */,
 				FFF04F142B97964400D1F1CC /* Assets.xcassets */,
@@ -94,39 +138,9 @@
 		FFF04F1E2B97967400D1F1CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FFF04F242B97990600D1F1CC /* Profile */,
 				FFF04F232B9798BA00D1F1CC /* Home */,
-				FFF04F222B97989100D1F1CC /* Authentication */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		FFF04F1F2B97967E00D1F1CC /* DesignSystem */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DesignSystem;
-			sourceTree = "<group>";
-		};
-		FFF04F202B97968500D1F1CC /* DataSources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DataSources;
-			sourceTree = "<group>";
-		};
-		FFF04F212B97979900D1F1CC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		FFF04F222B97989100D1F1CC /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Authentication;
 			sourceTree = "<group>";
 		};
 		FFF04F232B9798BA00D1F1CC /* Home */ = {
@@ -135,13 +149,6 @@
 				FFF04F122B97963E00D1F1CC /* HomeView.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		FFF04F242B97990600D1F1CC /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,7 +232,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16643BFC2BA0980800D9B1C6 /* AuthDataResultModel.swift in Sources */,
+				16643BF82BA0975300D9B1C6 /* AuthenticationManager.swift in Sources */,
 				FFF04F132B97963E00D1F1CC /* HomeView.swift in Sources */,
+				16643C022BA1790B00D9B1C6 /* StorageManager.swift in Sources */,
+				16643BFE2BA0987200D9B1C6 /* UserManager.swift in Sources */,
+				16643C002BA1780D00D9B1C6 /* UserModel.swift in Sources */,
 				FFF04F112B97963E00D1F1CC /* DHCApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,7 +367,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DHC/Preview Content\"";
-				DEVELOPMENT_TEAM = M3WV87649P;
+				DEVELOPMENT_TEAM = YL3LC4ZN6U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -363,6 +375,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -384,7 +397,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DHC/Preview Content\"";
-				DEVELOPMENT_TEAM = M3WV87649P;
+				DEVELOPMENT_TEAM = YL3LC4ZN6U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -392,6 +405,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
