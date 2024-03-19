@@ -20,12 +20,12 @@ struct HomeView: View {
             let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
             self.showSignInView = authUser == nil
         }
-//        .fullScreenCover(isPresented: $showSignInView) {
-//            NavigationView {
-//                AuthenticationView(showSignInView: $showSignInView)
-//            }
-//        }
-    }   
+        .fullScreenCover(isPresented: $showSignInView) {
+            NavigationView {
+                AuthenticationView(showSignInView: $showSignInView)
+            }
+        }
+    }
     
     private var bottomView: some View {
         TabView(selection: $selection) {
@@ -51,8 +51,8 @@ struct HomeView: View {
                     Image(systemName: "star")
                 }
                 .tag(4)
-            //ProfileView(showSignInView: $showSignInView)
-            Text("Profile View")
+            ProfileView(showSignInView: $showSignInView)
+//            Text("Profile View")
                 .tabItem {
                     Image(systemName: "person.circle.fill")
                 }
