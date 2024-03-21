@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
     @Binding var showSignInView: Bool
-
+    
     var body: some View {
         VStack(spacing: .zero) {
             HStack {
@@ -41,29 +41,29 @@ struct ProfileView: View {
         }
         .navigationTitle("Profile")
     }
-
+    
     private var infoView: some View {
         Image(systemName: "info.circle")
             .foregroundColor(.blue)
             .onTapGesture {
-            viewModel.isInfo = true
+                viewModel.isInfo = true
             }
             .popover(isPresented: $viewModel.isInfo) {
-                    Text("Tap on the picture or username to edit them")
-                        .font(.headline)
-                        .padding()
-                }
+                Text("Tap on the picture or username to edit them")
+                    .font(.headline)
+                    .padding()
+            }
             .padding(Spacing.spacing_3)
             .font(.headline)
     }
-
+    
     private var usernameView: some View {
         TitleText(text: viewModel.user?.username ?? "No username found")
             .onTapGesture {
                 viewModel.isEditingUsername = true
             }
     }
-
+    
     private var buttonView: some View {
         ButtonDS(buttonTitle: "Sign out") {
             Task {
@@ -76,16 +76,16 @@ struct ProfileView: View {
             }
         }
     }
-
+    
     private var profilePhoto: some View {
         let placeholderImage = Image(systemName: "photo.fill")
             .resizable()
             .scaledToFit()
             .frame(width: 400, height: 400)
             .padding(Spacing.spacing_5)
-
+        
         _ = viewModel.image
-
+        
         if let photoUrl = viewModel.user?.photoUrl, !photoUrl.isEmpty {
             if let data = viewModel.imageData, let image = UIImage(data: data) {
                 return AnyView(
