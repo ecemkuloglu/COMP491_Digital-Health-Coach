@@ -52,18 +52,18 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
-    func updateProfilePhoto(newPhotoURL: String) async throws {
-        do {
-            guard let userId = user?.userId else {
-                throw ProfileViewModelError.invalidUserId
-            }
-            try await UserManager.shared.updateUserPhoto(userId: userId, newPhotoURL: newPhotoURL)
-            
-            try await loadCurrentUser()
-        } catch {
-            throw ProfileViewModelError.updateFailed(message: error.localizedDescription)
-        }
-    }
+//    func updateProfilePhoto(newPhotoURL: String) async throws {
+//        do {
+//            guard let userId = user?.userId else {
+//                throw ProfileViewModelError.invalidUserId
+//            }
+//            try await UserManager.shared.updateUserPhoto(userId: userId, newPhotoURL: newPhotoURL)
+//
+//            try await loadCurrentUser()
+//        } catch {
+//            throw ProfileViewModelError.updateFailed(message: error.localizedDescription)
+//        }
+//    }
     
     func saveProfileImage() async throws {
         guard let image = selectedImage else { return }
