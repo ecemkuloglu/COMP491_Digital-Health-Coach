@@ -59,7 +59,7 @@ struct HomeView: View {
                 .tag(5)
         }
         .accentColor(.blue)
-        .navigationTitle("Digital Health Coah")
+        .navigationTitle("Digital Health Coach")
         
     }
 }

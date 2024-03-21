@@ -81,7 +81,7 @@ struct ProfileView: View {
         let placeholderImage = Image(systemName: "photo.fill")
             .resizable()
             .scaledToFit()
-            .frame(width: 200, height: 200)
+            .frame(width: 400, height: 400)
             .padding(Spacing.spacing_5)
 
         _ = viewModel.image
@@ -92,7 +92,7 @@ struct ProfileView: View {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 200, height: 200)
+                        .frame(width: 400, height: 400)
                         .padding(Spacing.spacing_5)
                 )
             }
