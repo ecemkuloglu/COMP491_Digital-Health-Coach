@@ -9,7 +9,6 @@ import SwiftUI
 import HealthKit
 
 struct UserRoutineView: View {
-    @Binding var showUserRoutineView: Bool
     @State private var stepCount: Int = 0
     @State private var showExerciseView: Bool = false
     
@@ -51,6 +50,6 @@ struct CalendarView: View {
 
 struct UserRoutineView_Previews: PreviewProvider {
     static var previews: some View {
-        UserRoutineView(showUserRoutineView: .constant(true))
+        UserRoutineView()
     }
 }
