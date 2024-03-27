@@ -46,7 +46,7 @@ struct HomeView: View {
                     Image(systemName: "house.fill")
                 }
                 .tag(3)
-            Text("Placeholder View")
+            UserRoutineView()
                 .tabItem {
                     Image(systemName: "star")
                 }
