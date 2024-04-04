@@ -17,14 +17,21 @@ struct ProfileView: View {
                 Spacer()
                 infoView
             }
-            Spacer()
+            usernameView
             profilePhoto
                 .onTapGesture {
                     viewModel.isEditingPhoto = true
                 }
-            usernameView
+            NavigationLink(destination: PreferencePageView()){
+                Text("Change your preferences")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            }
             Spacer()
             buttonView
+            Spacer()
         }
         .task {
             try? await viewModel.loadCurrentUser()
