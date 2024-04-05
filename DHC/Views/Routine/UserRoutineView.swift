@@ -14,24 +14,19 @@ struct UserRoutineView: View {
     
     var body: some View {
         VStack{
-            Text("Welcome to your routine page!")
-                .position(x: 130, y:40)
-                .padding()
-            //taken from developer.apple.com
+            Spacer()
             CalendarView()
-                .frame(width: 320, height: 300)
-                .position(x: 180, y:-80)
+            Spacer()
             Text("Step Count: \(stepCount)")
-            
-            Button("Look your exercises") {
+            ButtonDS(buttonTitle: "Your exercises") {
                 showExerciseView.toggle()
-                        }
-                        .padding()
-                        .sheet(isPresented: $showExerciseView) {
-                            ExerciseView(showExerciseView: $showExerciseView)
-                        }
-            
-        }.padding()
+            }
+        }
+        .sheet(isPresented: $showExerciseView) {
+            ExerciseView(showExerciseView: $showExerciseView)
+        }
+        .padding(Spacing.spacing_1)
+        .navigationTitle("Routine Page")
     }
 }
 
@@ -44,7 +39,7 @@ struct CalendarView: View {
             selection: $date,
             displayedComponents: [.date]
         )
-        .datePickerStyle(.graphical)
+            .datePickerStyle(.graphical)
     }
 }
 

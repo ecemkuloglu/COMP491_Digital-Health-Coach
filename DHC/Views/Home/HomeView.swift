@@ -29,19 +29,19 @@ struct HomeView: View {
     
     private var bottomView: some View {
         TabView(selection: $selection) {
-            Text("Placeholder View")
+            UserRoutineView()
                 .tabItem {
                     Image(systemName: "shuffle")
                 }
                 .tag(1)
-            //SearchView()
-            Text("Search View")
+            SearchView()
+            //Text("Search View")
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                 }
                 .tag(2)
-            //CategoryView()
-            Text("Category View")
+            MotivationView()
+            //Text("Category View")
                 .tabItem {
                     Image(systemName: "house.fill")
                 }
