@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MotivationView: View {
-    @ObservedObject var viewModel: MotivationViewModel
+    @ObservedObject var viewModel = MotivationViewModel()
         
     var body: some View {
         VStack {
