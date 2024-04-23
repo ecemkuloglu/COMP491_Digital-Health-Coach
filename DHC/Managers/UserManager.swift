@@ -60,13 +60,41 @@ class UserManager {
             throw UserManagerError.updateFailed(message: error.localizedDescription)
         }
     }
+    
+    // Fetch user preferences
+        func fetchUserPreferences(userId: String) async throws -> [Preference] {
+            let snapshot = try await Firestore.firestore().collection("users").document(userId).getDocument()
+            guard let data = snapshot.data(), let preferences = data["preferences"] as? [String: [String]] else {
+                throw UserManagerError.invalidData
+            }
+            return preferences.map { Preference(title: $0.key, options: $0.value) }
+        }
+
+        // Update user preferences
+        func updateUserPreferences(userId: String, preferences: [Preference]) async throws {
+            let preferencesData = preferences.reduce(into: [String: [String]]()) { (dict, pref) in
+                dict[pref.title] = pref.options
+            }
+            do {
+                let userRef = Firestore.firestore().collection("users").document(userId)
+                try await userRef.updateData(["preferences": preferencesData])
+            } catch {
+                throw UserManagerError.updateFailed(message: error.localizedDescription)
+            }
+        }
+    
+
     enum UserManagerError: Error {
         case invalidUserId
+        case invalidData
         case updateFailed(message: String)
+
         var localizedDescription: String {
             switch self {
             case .invalidUserId:
                 return "Invalid user ID."
+            case .invalidData:
+                return "Invalid data received."
             case .updateFailed(let message):
                 return "Failed to update user: \(message)"
             }

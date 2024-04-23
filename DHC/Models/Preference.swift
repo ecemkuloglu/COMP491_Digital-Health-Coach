@@ -13,7 +13,7 @@ struct Preference {
 }
 
 let preferences: [Preference] = [
-    Preference(title: "Goal", options: ["Lose weight", "Get stronger", "Keep my form", "Increasing stamina", "Stress relief"]),
+    Preference(title: "Goal", options: ["Lose weight", "Get stronger", "Keep my form", "Increasing stamina", "Stress relief", "Increasing balance"]),
     Preference(title: "Age", options: ["18-25", "25-38", "38-50", "50-65", "65+"]),
     Preference(title: "Focus Area", options: ["Back", "shoulder", "abs", "chest", "arm","hip","leg"]),
     Preference(title: "Duration", options: ["15", "30", "45", "60", "90"]),

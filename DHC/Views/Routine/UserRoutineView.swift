@@ -1,32 +1,51 @@
-//
-//  UserRoutineView.swift
-//  DHC
-//
-//  Created by Lab on 21.03.2024.
-//
-
 import SwiftUI
 import HealthKit
 
 struct UserRoutineView: View {
     @State private var stepCount: Int = 0
     @State private var showExerciseView: Bool = false
-    
+    @State private var exercises: [ExerciseModel] = []
+
+    // Assuming there's a way to obtain the current user's ID
+    private var currentUserId: String = "some_user_id" // This should be dynamically determined based on the user's session or login.
+
     var body: some View {
-        VStack{
-            Spacer()
-            CalendarView()
-            Spacer()
-            Text("Step Count: \(stepCount)")
-            ButtonDS(buttonTitle: "Your exercises") {
-                showExerciseView.toggle()
+        NavigationView {
+            List(exercises, id: \.name) { exercise in
+                VStack(alignment: .leading) {
+                    Text(exercise.name)
+                    Text(exercise.desc)
+                }
+            }
+            .onAppear {
+                loadExercises()
+            }
+            VStack {
+                Spacer()
+                CalendarView()
+                Spacer()
+                Text("Step Count: \(stepCount)")
+                ButtonDS(buttonTitle: "Your exercises") {
+                    showExerciseView.toggle()
+                }
+            }
+            .sheet(isPresented: $showExerciseView) {
+                ExerciseView(showExerciseView: $showExerciseView)
+            }
+            .padding(Spacing.spacing_1)
+            .navigationTitle("Routine Page")
+        }
+    }
+
+    private func loadExercises() {
+        Task {
+            do {
+                let userPreferences = try await UserManager.shared.fetchUserPreferences(userId: currentUserId)
+                exercises = try await ExerciseManager.shared.getExercisesMatchingPreferences(preferences: userPreferences)
+            } catch {
+                print("Error fetching exercises: \(error)")
             }
         }
-        .sheet(isPresented: $showExerciseView) {
-            ExerciseView(showExerciseView: $showExerciseView)
-        }
-        .padding(Spacing.spacing_1)
-        .navigationTitle("Routine Page")
     }
 }
 
@@ -39,7 +58,7 @@ struct CalendarView: View {
             selection: $date,
             displayedComponents: [.date]
         )
-            .datePickerStyle(.graphical)
+        .datePickerStyle(.graphical)
     }
 }
 
