@@ -20,11 +20,11 @@ struct HomeView: View {
             let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
             self.showSignInView = authUser == nil
         }
-        .fullScreenCover(isPresented: $showSignInView) {
-            NavigationView {
-                AuthenticationView(showSignInView: $showSignInView)
-            }
-        }
+        //.fullScreenCover(isPresented: $showSignInView) {
+          //  NavigationView {
+            //    AuthenticationView(showSignInView: $showSignInView)
+            //}
+       // }
     }
     
     private var bottomView: some View {
