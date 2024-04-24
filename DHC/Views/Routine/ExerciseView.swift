@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct ExerciseView: View {
     @Binding var isPresented: Bool
     @Binding var savedData: [String]
@@ -16,8 +14,15 @@ struct ExerciseView: View {
     @ObservedObject var viewModel: ExerciseViewModel
 
     var body: some View {
-        List(viewModel.dailyExercises, id: \.self) { exercise in
-            Text(exercise)
+        List {
+            Section(header: Text("Adım Sayısı")) {
+                Text("\(viewModel.stepCount) adım")
+            }
+            Section(header: Text("Egzersizler")) {
+                ForEach(viewModel.dailyExercises, id: \.self) { exercise in
+                    Text(exercise)
+                }
+            }
         }
         .onAppear {
             viewModel.selectedDate = selectedDate
