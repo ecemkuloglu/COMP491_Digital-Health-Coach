@@ -6,45 +6,79 @@
 //
 
 import SwiftUI
-import HealthKit
 
 struct UserRoutineView: View {
-    @State private var stepCount: Int = 0
-    @State private var showExerciseView: Bool = false
+    @State private var showExerciseView = false
+    @ObservedObject var viewModel = ExerciseViewModel()
+    @State private var savedData: [String] = []
+    @State private var selectedDate = Date()
     
     var body: some View {
-        VStack{
-            Spacer()
-            CalendarView()
-            Spacer()
-            Text("Step Count: \(stepCount)")
-            ButtonDS(buttonTitle: "Your exercises") {
-                showExerciseView.toggle()
+        NavigationView {
+            VStack {
+                CalendarView(selectedDate: $selectedDate)
+                NavigationLink(destination: ExerciseView(isPresented: $showExerciseView, savedData: $savedData, selectedDate: selectedDate, viewModel: viewModel), isActive: $showExerciseView) {
+                    EmptyView()
+                }
+                Picker("Select Exercise", selection: $viewModel.selectedExerciseIndex) {
+                    ForEach(0..<viewModel.exercises.count, id: \.self) { index in
+                        Text(viewModel.exercises[index]).tag(index)
+                    }
+                }
+                .pickerStyle(WheelPickerStyle())
+
+                DurationPickerView(viewModel: viewModel)
+
+                Button("Save") {
+                    viewModel.saveExercise()
+                    viewModel.selectedDate = selectedDate
+                    savedData.append("\(viewModel.exercises[viewModel.selectedExerciseIndex]) done for \(viewModel.minutesRange[viewModel.selectedMinutesIndex]) min \(viewModel.secondsRange[viewModel.selectedSecondsIndex]) sec")
+                }.padding()
+                Button("Your exercises") {
+                    showExerciseView = true
+                }
             }
+            .padding()
+            .navigationTitle("Routine Page")
         }
-        .sheet(isPresented: $showExerciseView) {
-            ExerciseView(showExerciseView: $showExerciseView)
+    }
+}
+
+struct DurationPickerView: View {
+    @ObservedObject var viewModel: ExerciseViewModel
+
+    var body: some View {
+        HStack {
+            Text("Duration (min):")
+            Picker("", selection: $viewModel.selectedMinutesIndex) {
+                ForEach(0..<viewModel.minutesRange.count, id: \.self) { index in
+                    Text("\(viewModel.minutesRange[index])").tag(index)
+                }
+            }
+            .pickerStyle(WheelPickerStyle())
+            .frame(width: 100)
+
+            Text("Duration (sec):")
+            Picker("", selection: $viewModel.selectedSecondsIndex) {
+                ForEach(0..<viewModel.secondsRange.count, id: \.self) { index in
+                    Text("\(viewModel.secondsRange[index])").tag(index)
+                }
+            }
+            .pickerStyle(WheelPickerStyle())
+            .frame(width: 100)
         }
-        .padding(Spacing.spacing_1)
-        .navigationTitle("Routine Page")
     }
 }
 
 struct CalendarView: View {
-    @State private var date = Date()
-    
+    @Binding var selectedDate: Date
+
     var body: some View {
         DatePicker(
-            "Start Date",
-            selection: $date,
-            displayedComponents: [.date]
+            "Select Date",
+            selection: $selectedDate,
+            displayedComponents: .date
         )
-            .datePickerStyle(.graphical)
-    }
-}
-
-struct UserRoutineView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserRoutineView()
+        .datePickerStyle(GraphicalDatePickerStyle())
     }
 }
