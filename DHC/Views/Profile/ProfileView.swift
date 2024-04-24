@@ -22,7 +22,7 @@ struct ProfileView: View {
                 .onTapGesture {
                     viewModel.isEditingPhoto = true
                 }
-            NavigationLink(destination: PreferencePageView()){
+            NavigationLink(destination: PreferencePageView(preferences: preferences)){
                 Text("Change your preferences")
                     .foregroundColor(.white)
                     .padding()
