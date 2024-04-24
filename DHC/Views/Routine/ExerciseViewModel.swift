@@ -26,7 +26,7 @@ class ExerciseViewModel: ObservableObject {
         let exercise = exercises[selectedExerciseIndex]
         let durationMinutes = minutesRange[selectedMinutesIndex]
         let durationSeconds = secondsRange[selectedSecondsIndex]
-        let totalDuration = durationMinutes * 60 + durationSeconds  // Duration in seconds
+        let totalDuration = durationMinutes * 60 + durationSeconds  
 
         guard let userId = Auth.auth().currentUser?.uid else {
             print("Error: User not logged in")
