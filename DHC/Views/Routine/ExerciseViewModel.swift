@@ -17,19 +17,64 @@ class ExerciseViewModel: ObservableObject {
     @Published var selectedDate: Date = Date()
     @Published var dailyExercises: [String] = []
     @Published var stepCount: Int = 0
+    @Published var exercises: [String] = []
     private var healthStore = HKHealthStore()
+    @Published var filteredExercises: [String] = []
+    @Published var preferences: [String: String] = [:]
 
-    let exercises = ["Push-ups", "Running", "Swimming", "Cycling"]
     let minutesRange = Array(0...60)
     let secondsRange = Array(0...59)
 
     private var cancellables = Set<AnyCancellable>()
 
+    init() {
+        fetchExercisesFromManager()
+    }
+
+    private func fetchExercisesFromManager() {
+        Task {
+            do {
+                let fetchedExercises = try await ExerciseManager.shared.getAllExercises()
+                DispatchQueue.main.async {
+                    self.exercises = fetchedExercises.map { $0.name }
+                }
+            } catch {
+                print("Error fetching exercises: \(error)")
+            }
+        }
+    }
+    private func fetchPreferences() {
+            guard let userId = Auth.auth().currentUser?.uid else {
+                print("Error: User not logged in")
+                return
+            }
+            PreferenceManager.shared.fetchAllPreferences(userId: userId) { preferences, error in
+                if let error = error {
+                    print("Error fetching preferences: \(error.localizedDescription)")
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.preferences = preferences ?? [:]
+                    self.filterExercises()
+                }
+            }
+        }
+    func filterExercises() {
+            if preferences.isEmpty {
+                filteredExercises = exercises
+            } else {
+                filteredExercises = exercises.filter { exercise in
+                    let focusAreaPreference = preferences["focus_area_preference"] ?? ""
+                    return exercise.contains(focusAreaPreference)
+                }
+            }
+        }
+    
     func saveExercise() {
         let exercise = exercises[selectedExerciseIndex]
         let durationMinutes = minutesRange[selectedMinutesIndex]
         let durationSeconds = secondsRange[selectedSecondsIndex]
-        let totalDuration = durationMinutes * 60 + durationSeconds  
+        let totalDuration = durationMinutes * 60 + durationSeconds
 
         guard let userId = Auth.auth().currentUser?.uid else {
             print("Error: User not logged in")
@@ -54,20 +99,20 @@ class ExerciseViewModel: ObservableObject {
 
     func fetchExercisesForSelectedDate() {
         guard let userId = Auth.auth().currentUser?.uid else {
-                    print("Error: User not logged in")
-                    return
-                }
+            print("Error: User not logged in")
+            return
+        }
 
-                Task {
-                    do {
-                        let exercises = try await ExerciseDoneManager.shared.fetchExercises(userId: userId, date: selectedDate)
-                        DispatchQueue.main.async {
-                            self.dailyExercises = exercises.map { "\($0.exercise) for \($0.duration / 60) min \($0.duration % 60) sec" }
-                        }
-                    } catch {
-                        print("Error fetching exercises: \(error)")
-                    }
+        Task {
+            do {
+                let exercises = try await ExerciseDoneManager.shared.fetchExercises(userId: userId, date: selectedDate)
+                DispatchQueue.main.async {
+                    self.dailyExercises = exercises.map { "\($0.exercise) for \($0.duration / 60) min \($0.duration % 60) sec" }
                 }
+            } catch {
+                print("Error fetching exercises: \(error)")
+            }
+        }
         fetchStepCount()
     }
     

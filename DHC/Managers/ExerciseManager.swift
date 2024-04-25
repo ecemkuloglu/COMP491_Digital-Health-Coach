@@ -12,24 +12,28 @@ import FirebaseFirestoreSwift
 class ExerciseManager {
     
     static let shared = ExerciseManager()
-    
+    private var db = Firestore.firestore()
+
     private init() {}
     
-    func getAllExercises() async throws -> [ExerciseModel] {
-        let querySnapshot = try await Firestore.firestore().collection("exercises").getDocuments()
-        var exercises: [ExerciseModel] = []
-        for document in querySnapshot.documents {
-            let data = document.data()
-            guard let name = data["name"] as? String,
-                  let desc = data["desc"] as? String,
-                  let photoUrl = data["photo_url"] as? String else {
-                throw ExerciseManagerError.invalidData
+    func fetchExercises() async throws -> [ExerciseModel] {
+            let snapshot = try await db.collection("exercises").getDocuments()
+            let exercises = snapshot.documents.compactMap { doc -> ExerciseModel? in
+                try? doc.data(as: ExerciseModel.self)
             }
-            let exercise = ExerciseModel(name: name, desc: desc, photoUrl: photoUrl)
-            exercises.append(exercise)
+            return exercises
         }
-        return exercises
-    }
+    
+   
+    func getAllExercises() async throws -> [ExerciseModel] {
+            let querySnapshot = try await Firestore.firestore().collection("exercises").getDocuments()
+            var exercises: [ExerciseModel] = []
+            for document in querySnapshot.documents {
+                let exercise = try document.data(as: ExerciseModel.self)
+                exercises.append(exercise)
+            }
+            return exercises
+        }
 
     func getExerciseByName(name: String) async throws -> ExerciseModel? {
         let querySnapshot = try await Firestore.firestore().collection("exercises").whereField("name", isEqualTo: name).getDocuments()
@@ -38,11 +42,17 @@ class ExerciseManager {
         }
         let data = document.data()
         guard let name = data["name"] as? String,
-              let desc = data["desc"] as? String,
-              let photoUrl = data["photo_url"] as? String else {
+                let desc = data["desc"] as? String,
+                let exp_before = data["exp_before"] as? String,
+                let focus_area = data["focus_area"] as? String,
+                let goal = data["goal"] as? String,
+                let loc_preference = data["loc_preference"] as? String,
+                let photo_url = data["photo_url"] as? String
+
+        else {
             throw ExerciseManagerError.invalidData
         }
-        return ExerciseModel(name: name, desc: desc, photoUrl: photoUrl)
+        return ExerciseModel(name: name, desc: desc,photo_url: photo_url, exp_before: exp_before, focus_area: focus_area, goal: goal, loc_preference: loc_preference)
     }
     
     enum ExerciseManagerError: Error {
@@ -62,5 +72,3 @@ class ExerciseManager {
         }
     }
 }
-
-

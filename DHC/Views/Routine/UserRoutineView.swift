@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserRoutineView: View {
     @State private var showExerciseView = false
+    @State private var showRecomendedExerciseView = false
     @ObservedObject var viewModel = ExerciseViewModel()
     @State private var savedData: [String] = []
     @State private var selectedDate = Date()
@@ -18,6 +19,9 @@ struct UserRoutineView: View {
             VStack {
                 CalendarView(selectedDate: $selectedDate)
                 NavigationLink(destination: ExerciseView(isPresented: $showExerciseView, savedData: $savedData, selectedDate: selectedDate, viewModel: viewModel), isActive: $showExerciseView) {
+                    EmptyView()
+                }
+                NavigationLink(destination: RecomendedExerciseView(isPresented: $showRecomendedExerciseView, viewModel: viewModel), isActive: $showRecomendedExerciseView) {
                     EmptyView()
                 }
                 Picker("Select Exercise", selection: $viewModel.selectedExerciseIndex) {
@@ -34,8 +38,11 @@ struct UserRoutineView: View {
                     viewModel.selectedDate = selectedDate
                     savedData.append("\(viewModel.exercises[viewModel.selectedExerciseIndex]) done for \(viewModel.minutesRange[viewModel.selectedMinutesIndex]) min \(viewModel.secondsRange[viewModel.selectedSecondsIndex]) sec")
                 }.padding()
-                Button("Your exercises") {
+                Button("Your done exercises") {
                     showExerciseView = true
+                }
+                Button("Your recomended exercises") {
+                    showRecomendedExerciseView = true
                 }
             }
             .padding()
