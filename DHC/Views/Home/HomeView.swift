@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var selection = 3
     @State private var showSignInView: Bool = false
+    @StateObject var balanceViewModel = BalanceViewModel()
     
     var body: some View {
         
@@ -20,11 +21,11 @@ struct HomeView: View {
             let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
             self.showSignInView = authUser == nil
         }
-        //.fullScreenCover(isPresented: $showSignInView) {
-          //  NavigationView {
-            //    AuthenticationView(showSignInView: $showSignInView)
-            //}
-       // }
+        .fullScreenCover(isPresented: $showSignInView) {
+            NavigationView {
+                AuthenticationView(showSignInView: $showSignInView)
+            }
+        }
     }
     
     private var bottomView: some View {
@@ -46,7 +47,7 @@ struct HomeView: View {
                     Image(systemName: "house.fill")
                 }
                 .tag(3)
-            Text("Category View")
+            BalanceView(viewModel: balanceViewModel)
                 .tabItem {
                     Image(systemName: "star")
                 }

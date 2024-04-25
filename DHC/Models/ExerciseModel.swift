@@ -10,7 +10,7 @@ import Foundation
 struct ExerciseModel: Codable {
     let name: String
     let desc: String
-    let photoUrl: String
+    let photo_url: String
     let exp_before: String
     let focus_area: String
     let goal: String

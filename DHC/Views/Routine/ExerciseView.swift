@@ -8,15 +8,31 @@
 import SwiftUI
 
 struct ExerciseView: View {
-    @Binding var showExerciseView: Bool
+    @Binding var isPresented: Bool
+    @Binding var savedData: [String]
+    let selectedDate: Date
+    @ObservedObject var viewModel: ExerciseViewModel
+    
+    
     
     var body: some View {
-        Text("Exercise list for you")
-    }
-}
-
-struct ExerciseView_Previews: PreviewProvider {
-    static var previews: some View {
-      ExerciseView(showExerciseView: .constant(true))
+        List {
+            Section(header: Text("Adım Sayısı")) {
+                Text("\(viewModel.stepCount) adım")
+            }
+            Section(header: Text("Egzersizler")) {
+                ForEach(viewModel.dailyExercises, id: \.self) { exercise in
+                    Text(exercise)
+                }
+            }
+            .task {
+                viewModel.selectedDate = selectedDate
+                viewModel.fetchExercisesForSelectedDate()
+                //try? await viewModel.loadCurrentUser()
+                //if let userId = viewModel.user?.userId {
+                //viewModel.loadExercisesMatchingPreferences(userId: userId)
+                //}
+            }
+        }
     }
 }
