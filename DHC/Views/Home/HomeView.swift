@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var selection = 3
     @State private var showSignInView: Bool = false
+    @StateObject var balanceViewModel = BalanceViewModel()
     
     var body: some View {
         
@@ -29,24 +30,24 @@ struct HomeView: View {
     
     private var bottomView: some View {
         TabView(selection: $selection) {
-            Text("Placeholder View")
+            UserRoutineView()
                 .tabItem {
                     Image(systemName: "shuffle")
                 }
                 .tag(1)
-            //SearchView()
-            Text("Search View")
+            SearchView()
+            //Text("Search View")
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                 }
                 .tag(2)
-            //CategoryView()
-            Text("Category View")
+            MotivationView()
+            //Text("Category View")
                 .tabItem {
                     Image(systemName: "house.fill")
                 }
                 .tag(3)
-            Text("Category View")
+            BalanceView(viewModel: balanceViewModel)
                 .tabItem {
                     Image(systemName: "star")
                 }

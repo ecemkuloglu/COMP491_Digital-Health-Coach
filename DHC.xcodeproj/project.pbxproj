@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0FB0755F2BB4F593002F78B5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0FB0755E2BB4F593002F78B5 /* GoogleService-Info.plist */; };
 		0FB075672BB4F7C8002F78B5 /* MotivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB075662BB4F7C8002F78B5 /* MotivationView.swift */; };
 		0FB075692BB4F7EB002F78B5 /* MotivationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB075682BB4F7EB002F78B5 /* MotivationViewModel.swift */; };
 		16643BF82BA0975300D9B1C6 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643BF72BA0975300D9B1C6 /* AuthenticationManager.swift */; };
@@ -29,6 +28,24 @@
 		16643C632BA9B6F300D9B1C6 /* UpdateUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643C622BA9B6F300D9B1C6 /* UpdateUsernameView.swift */; };
 		16643C662BA9B88F00D9B1C6 /* TitleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643C652BA9B88F00D9B1C6 /* TitleText.swift */; };
 		16643C682BA9BBBC00D9B1C6 /* PHPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643C672BA9BBBC00D9B1C6 /* PHPickerView.swift */; };
+		16993C092BCC3AAB0019F175 /* ExerciseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16993C082BCC3AAB0019F175 /* ExerciseManager.swift */; };
+		16993C0B2BCC3AD50019F175 /* ExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16993C0A2BCC3AD50019F175 /* ExerciseModel.swift */; };
+		16AD04E72BBFCD640064CBD1 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AD04E52BBFCD640064CBD1 /* ExerciseView.swift */; };
+		16AD04E82BBFCD640064CBD1 /* UserRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AD04E62BBFCD640064CBD1 /* UserRoutineView.swift */; };
+		16AD04EA2BBFCFB80064CBD1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16AD04E92BBFCFB80064CBD1 /* GoogleService-Info.plist */; };
+		5F781BF12BBF371A00D4C149 /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F781BF02BBF371A00D4C149 /* Preference.swift */; };
+		5F781BF32BBF373B00D4C149 /* PreferencePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F781BF22BBF373B00D4C149 /* PreferencePageView.swift */; };
+		5F781C022BBF3B3C00D4C149 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		5F781C052BBF3B8800D4C149 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		6A8991AB2BD9A7A60086F14E /* ExerciseDoneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8991AA2BD9A7A60086F14E /* ExerciseDoneManager.swift */; };
+		6A8991AD2BD9A7F50086F14E /* ExerciseRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8991AC2BD9A7F50086F14E /* ExerciseRecordModel.swift */; };
+		6A8991AF2BD9A84B0086F14E /* ExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8991AE2BD9A84B0086F14E /* ExerciseViewModel.swift */; };
+		6A8991B12BD9BA7E0086F14E /* PreferenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8991B02BD9BA7E0086F14E /* PreferenceViewModel.swift */; };
+		6A8991B32BD9BA990086F14E /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8991B22BD9BA990086F14E /* PreferenceManager.swift */; };
+		6A8991B52BD9BEE90086F14E /* PreferenceSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8991B42BD9BEE90086F14E /* PreferenceSelectionView.swift */; };
+		6A8991B82BD9C6040086F14E /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8991B72BD9C6040086F14E /* BalanceView.swift */; };
+		6A8991BA2BD9C8DD0086F14E /* BalanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8991B92BD9C8DD0086F14E /* BalanceViewModel.swift */; };
+		6A8991BC2BD9C93F0086F14E /* BalanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A8991BB2BD9C93F0086F14E /* BalanceManager.swift */; };
 		FF36E3CB2BA076330063D935 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FF36E3CA2BA076330063D935 /* FirebaseAnalytics */; };
 		FF36E3CD2BA076330063D935 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FF36E3CC2BA076330063D935 /* FirebaseAuth */; };
 		FF36E3CF2BA076330063D935 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FF36E3CE2BA076330063D935 /* FirebaseFirestore */; };
@@ -42,7 +59,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0FB0755E2BB4F593002F78B5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0FB075602BB4F6E3002F78B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0FB075662BB4F7C8002F78B5 /* MotivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationView.swift; sourceTree = "<group>"; };
 		0FB075682BB4F7EB002F78B5 /* MotivationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationViewModel.swift; sourceTree = "<group>"; };
@@ -65,6 +81,22 @@
 		16643C622BA9B6F300D9B1C6 /* UpdateUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUsernameView.swift; sourceTree = "<group>"; };
 		16643C652BA9B88F00D9B1C6 /* TitleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleText.swift; sourceTree = "<group>"; };
 		16643C672BA9BBBC00D9B1C6 /* PHPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPickerView.swift; sourceTree = "<group>"; };
+		16993C082BCC3AAB0019F175 /* ExerciseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseManager.swift; sourceTree = "<group>"; };
+		16993C0A2BCC3AD50019F175 /* ExerciseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseModel.swift; sourceTree = "<group>"; };
+		16AD04E52BBFCD640064CBD1 /* ExerciseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
+		16AD04E62BBFCD640064CBD1 /* UserRoutineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRoutineView.swift; sourceTree = "<group>"; };
+		16AD04E92BBFCFB80064CBD1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5F781BF02BBF371A00D4C149 /* Preference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
+		5F781BF22BBF373B00D4C149 /* PreferencePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencePageView.swift; sourceTree = "<group>"; };
+		6A8991AA2BD9A7A60086F14E /* ExerciseDoneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDoneManager.swift; sourceTree = "<group>"; };
+		6A8991AC2BD9A7F50086F14E /* ExerciseRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRecordModel.swift; sourceTree = "<group>"; };
+		6A8991AE2BD9A84B0086F14E /* ExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewModel.swift; sourceTree = "<group>"; };
+		6A8991B02BD9BA7E0086F14E /* PreferenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewModel.swift; sourceTree = "<group>"; };
+		6A8991B22BD9BA990086F14E /* PreferenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
+		6A8991B42BD9BEE90086F14E /* PreferenceSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceSelectionView.swift; sourceTree = "<group>"; };
+		6A8991B72BD9C6040086F14E /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
+		6A8991B92BD9C8DD0086F14E /* BalanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewModel.swift; sourceTree = "<group>"; };
+		6A8991BB2BD9C93F0086F14E /* BalanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceManager.swift; sourceTree = "<group>"; };
 		FF54A0AC2BB1908E00A145F1 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		FFF04F0D2B97963E00D1F1CC /* DHC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DHC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF04F102B97963E00D1F1CC /* DHCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DHCApp.swift; sourceTree = "<group>"; };
@@ -124,6 +156,10 @@
 				16643BFD2BA0987200D9B1C6 /* UserManager.swift */,
 				16643BF72BA0975300D9B1C6 /* AuthenticationManager.swift */,
 				16643C012BA1790B00D9B1C6 /* StorageManager.swift */,
+				16993C082BCC3AAB0019F175 /* ExerciseManager.swift */,
+				6A8991AA2BD9A7A60086F14E /* ExerciseDoneManager.swift */,
+				6A8991B22BD9BA990086F14E /* PreferenceManager.swift */,
+				6A8991BB2BD9C93F0086F14E /* BalanceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -131,8 +167,11 @@
 		16643BFA2BA0978600D9B1C6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5F781BF02BBF371A00D4C149 /* Preference.swift */,
 				16643BFB2BA0980800D9B1C6 /* AuthDataResultModel.swift */,
 				16643BFF2BA1780D00D9B1C6 /* UserModel.swift */,
+				16993C0A2BCC3AD50019F175 /* ExerciseModel.swift */,
+				6A8991AC2BD9A7F50086F14E /* ExerciseRecordModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -155,6 +194,9 @@
 				16643C5E2BA9B67400D9B1C6 /* ProfileViewModel.swift */,
 				16643C602BA9B6C700D9B1C6 /* UpdateUserPhotoView.swift */,
 				16643C622BA9B6F300D9B1C6 /* UpdateUsernameView.swift */,
+				5F781BF22BBF373B00D4C149 /* PreferencePageView.swift */,
+				6A8991B02BD9BA7E0086F14E /* PreferenceViewModel.swift */,
+				6A8991B42BD9BEE90086F14E /* PreferenceSelectionView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -165,6 +207,26 @@
 				16643C652BA9B88F00D9B1C6 /* TitleText.swift */,
 			);
 			path = Text;
+			sourceTree = "<group>";
+		};
+		16AD04E42BBFCD640064CBD1 /* Routine */ = {
+			isa = PBXGroup;
+			children = (
+				16AD04E52BBFCD640064CBD1 /* ExerciseView.swift */,
+				16AD04E62BBFCD640064CBD1 /* UserRoutineView.swift */,
+				6A8991AE2BD9A84B0086F14E /* ExerciseViewModel.swift */,
+			);
+			name = Routine;
+			path = DHC/Views/Routine;
+			sourceTree = SOURCE_ROOT;
+		};
+		6A8991B62BD9C5E60086F14E /* Balance */ = {
+			isa = PBXGroup;
+			children = (
+				6A8991B72BD9C6040086F14E /* BalanceView.swift */,
+				6A8991B92BD9C8DD0086F14E /* BalanceViewModel.swift */,
+			);
+			path = Balance;
 			sourceTree = "<group>";
 		};
 		FF54A0AB2BB1906F00A145F1 /* Search */ = {
@@ -202,8 +264,8 @@
 		FFF04F0F2B97963E00D1F1CC /* DHC */ = {
 			isa = PBXGroup;
 			children = (
+				16AD04E92BBFCFB80064CBD1 /* GoogleService-Info.plist */,
 				0FB075602BB4F6E3002F78B5 /* Info.plist */,
-				0FB0755E2BB4F593002F78B5 /* GoogleService-Info.plist */,
 				16643BFA2BA0978600D9B1C6 /* Models */,
 				16643BF62BA0970300D9B1C6 /* Managers */,
 				16643BF52BA096E900D9B1C6 /* DesignSystems */,
@@ -227,6 +289,8 @@
 		FFF04F1E2B97967400D1F1CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6A8991B62BD9C5E60086F14E /* Balance */,
+				16AD04E42BBFCD640064CBD1 /* Routine */,
 				0FB075612BB4F72D002F78B5 /* Motivation */,
 				FF54A0AB2BB1906F00A145F1 /* Search */,
 				16643C5B2BA9B62600D9B1C6 /* Profile */,
@@ -313,8 +377,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFF04F182B97964500D1F1CC /* Preview Assets.xcassets in Resources */,
-				0FB0755F2BB4F593002F78B5 /* GoogleService-Info.plist in Resources */,
 				FFF04F152B97964400D1F1CC /* Assets.xcassets in Resources */,
+				16AD04EA2BBFCFB80064CBD1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,27 +389,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F781BF12BBF371A00D4C149 /* Preference.swift in Sources */,
 				16643C5A2BA9883700D9B1C6 /* SignViewModel.swift in Sources */,
 				16643BFC2BA0980800D9B1C6 /* AuthDataResultModel.swift in Sources */,
+				6A8991BA2BD9C8DD0086F14E /* BalanceViewModel.swift in Sources */,
 				0FB075692BB4F7EB002F78B5 /* MotivationViewModel.swift in Sources */,
 				16643BF82BA0975300D9B1C6 /* AuthenticationManager.swift in Sources */,
+				16AD04E72BBFCD640064CBD1 /* ExerciseView.swift in Sources */,
 				16643C4E2BA9857C00D9B1C6 /* Spacing.swift in Sources */,
 				FFF04F132B97963E00D1F1CC /* HomeView.swift in Sources */,
 				16643C682BA9BBBC00D9B1C6 /* PHPickerView.swift in Sources */,
+				5F781C022BBF3B3C00D4C149 /* (null) in Sources */,
+				5F781BF32BBF373B00D4C149 /* PreferencePageView.swift in Sources */,
 				16643C522BA9861600D9B1C6 /* NavigationButtonDS.swift in Sources */,
+				6A8991B82BD9C6040086F14E /* BalanceView.swift in Sources */,
+				16993C092BCC3AAB0019F175 /* ExerciseManager.swift in Sources */,
 				16643C562BA986EC00D9B1C6 /* ButtonDS.swift in Sources */,
+				6A8991B52BD9BEE90086F14E /* PreferenceSelectionView.swift in Sources */,
+				5F781C052BBF3B8800D4C149 /* (null) in Sources */,
 				16643C022BA1790B00D9B1C6 /* StorageManager.swift in Sources */,
 				16643C5D2BA9B63F00D9B1C6 /* ProfileView.swift in Sources */,
 				FF54A0AD2BB1908E00A145F1 /* SearchView.swift in Sources */,
+				6A8991AD2BD9A7F50086F14E /* ExerciseRecordModel.swift in Sources */,
 				16643C662BA9B88F00D9B1C6 /* TitleText.swift in Sources */,
 				16643C612BA9B6C700D9B1C6 /* UpdateUserPhotoView.swift in Sources */,
+				6A8991AB2BD9A7A60086F14E /* ExerciseDoneManager.swift in Sources */,
 				16643C542BA9869100D9B1C6 /* SignInView.swift in Sources */,
+				6A8991B12BD9BA7E0086F14E /* PreferenceViewModel.swift in Sources */,
 				16643BFE2BA0987200D9B1C6 /* UserManager.swift in Sources */,
 				16643C002BA1780D00D9B1C6 /* UserModel.swift in Sources */,
+				16993C0B2BCC3AD50019F175 /* ExerciseModel.swift in Sources */,
+				6A8991AF2BD9A84B0086F14E /* ExerciseViewModel.swift in Sources */,
+				6A8991B32BD9BA990086F14E /* PreferenceManager.swift in Sources */,
 				16643C632BA9B6F300D9B1C6 /* UpdateUsernameView.swift in Sources */,
+				6A8991BC2BD9C93F0086F14E /* BalanceManager.swift in Sources */,
 				16643C582BA9879C00D9B1C6 /* SignUpView.swift in Sources */,
 				16643C5F2BA9B67400D9B1C6 /* ProfileViewModel.swift in Sources */,
 				16643C502BA985CE00D9B1C6 /* Radius.swift in Sources */,
+				16AD04E82BBFCD640064CBD1 /* UserRoutineView.swift in Sources */,
 				16643C4C2BA9854400D9B1C6 /* AuthenticationView.swift in Sources */,
 				FFF04F112B97963E00D1F1CC /* DHCApp.swift in Sources */,
 				0FB075672BB4F7C8002F78B5 /* MotivationView.swift in Sources */,
@@ -477,10 +558,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DHC/Preview Content\"";
-				DEVELOPMENT_TEAM = YL3LC4ZN6U;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DHC/Info.plist;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Access needed to your photo library to select an image for your profile photo.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -509,10 +593,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DHC/Preview Content\"";
-				DEVELOPMENT_TEAM = YL3LC4ZN6U;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DHC/Info.plist;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Access needed to your photo library to select an image for your profile photo.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
