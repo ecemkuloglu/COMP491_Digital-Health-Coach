@@ -16,7 +16,7 @@ struct BalanceView: View {
 
     var body: some View {
         VStack {
-            Text("Kalan Süre: \(remainingSeconds) saniye")
+            Text("Remaining: \(remainingSeconds) sec")
                 .font(.largeTitle)
                 .padding()
 
@@ -28,13 +28,13 @@ struct BalanceView: View {
                 .progressViewStyle(.linear)
                 .frame(width: 300, height: 20)
 
-            Button("Dengeyi Ölçmeyi Başlat") {
+            Button("Start Measure Balance") {
                 startMeasurement()
             }
             .padding()
             .disabled(timer != nil)
 
-            Button("Ölçümü Durdur") {
+            Button("Stop") {
                 stopMeasurement()
             }
             .padding()
