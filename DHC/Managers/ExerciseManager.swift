@@ -16,7 +16,7 @@ class ExerciseManager {
 
     private init() {}
     
-    /*func getExercisesMatchingPreferences(preferences: [Preference]) async throws -> [ExerciseModel] {
+    func getExercisesMatchingPreferences(preferences: [Preference]) async throws -> [ExerciseModel] {
         let db = Firestore.firestore()
         var query: Query = db.collection("exercises")
 
@@ -38,7 +38,7 @@ class ExerciseManager {
         return querySnapshot.documents.compactMap { document in
             try? document.data(as: ExerciseModel.self)
         }
-    }*/
+    }
     
     func fetchExercises() async throws -> [ExerciseModel] {
             let snapshot = try await db.collection("exercises").getDocuments()

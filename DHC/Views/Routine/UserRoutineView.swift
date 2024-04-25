@@ -5,10 +5,9 @@ struct UserRoutineView: View {
     @State private var stepCount: Int = 0
     @State private var showExerciseView: Bool = false
     @State private var exercises: [ExerciseModel] = []
-
-    // Assuming there's a way to obtain the current user's ID
-    private var currentUserId: String = "some_user_id" // This should be dynamically determined based on the user's session or login.
-
+    
+    private var currentUserId: String = "user_id" // !!!!!!
+    
     var body: some View {
         NavigationView {
             List(exercises, id: \.name) { exercise in
@@ -29,25 +28,25 @@ struct UserRoutineView: View {
                     showExerciseView.toggle()
                 }
             }
-            .sheet(isPresented: $showExerciseView) {
-                ExerciseView(showExerciseView: $showExerciseView)
-            }
+           // .sheet(isPresented: $showExerciseView) {
+             //  ExerciseView(showExerciseView: $showExerciseView)
+             //}
             .padding(Spacing.spacing_1)
             .navigationTitle("Routine Page")
         }
     }
-
-    private func loadExercises() {
-        Task {
-            do {
-                let userPreferences = try await UserManager.shared.fetchUserPreferences(userId: currentUserId)
-                exercises = try await ExerciseManager.shared.getExercisesMatchingPreferences(preferences: userPreferences)
-            } catch {
-                print("Error fetching exercises: \(error)")
+    
+     private func loadExercises() {
+     Task {
+     do {
+     let userPreferences = try await UserManager.shared.fetchUserPreferences(userId: currentUserId)
+     exercises = try await ExerciseManager.shared.getExercisesMatchingPreferences(preferences: userPreferences)
+     } catch {
+     print("Error fetching exercises: \(error)")
             }
         }
     }
-}
+    }
 
 struct CalendarView: View {
     @State private var date = Date()
