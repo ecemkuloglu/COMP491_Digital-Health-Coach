@@ -41,4 +41,26 @@ class PreferenceManager {
             }
         }
     }
+    
+    func fetchAllPreferences(userId: String, completion: @escaping ([String: String]?, Error?) -> Void) {
+        let userRef = db.collection("users").document(userId)
+        var preferences: [String: String] = [:]
+        
+        userRef.getDocument { documentSnapshot, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            if let document = documentSnapshot, document.exists, let data = document.data() {
+                for (key, value) in data {
+                    if key.contains("_preference"), let preference = value as? String {
+                        preferences[key] = preference
+                    }
+                }
+                completion(preferences, nil)
+            } else {
+                completion(nil, nil)
+            }
+        }
+    }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0FB075672BB4F7C8002F78B5 /* MotivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB075662BB4F7C8002F78B5 /* MotivationView.swift */; };
 		0FB075692BB4F7EB002F78B5 /* MotivationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB075682BB4F7EB002F78B5 /* MotivationViewModel.swift */; };
+		0FCA11912BDB018600142E1D /* RecomendedExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCA11902BDB018600142E1D /* RecomendedExerciseView.swift */; };
 		16643BF82BA0975300D9B1C6 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643BF72BA0975300D9B1C6 /* AuthenticationManager.swift */; };
 		16643BFC2BA0980800D9B1C6 /* AuthDataResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643BFB2BA0980800D9B1C6 /* AuthDataResultModel.swift */; };
 		16643BFE2BA0987200D9B1C6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643BFD2BA0987200D9B1C6 /* UserManager.swift */; };
@@ -62,6 +63,7 @@
 		0FB075602BB4F6E3002F78B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0FB075662BB4F7C8002F78B5 /* MotivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationView.swift; sourceTree = "<group>"; };
 		0FB075682BB4F7EB002F78B5 /* MotivationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationViewModel.swift; sourceTree = "<group>"; };
+		0FCA11902BDB018600142E1D /* RecomendedExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendedExerciseView.swift; sourceTree = "<group>"; };
 		0FE81FA62BDA8CBB00F1C43E /* DHC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DHC.entitlements; sourceTree = "<group>"; };
 		16643BF72BA0975300D9B1C6 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		16643BFB2BA0980800D9B1C6 /* AuthDataResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResultModel.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				16AD04E52BBFCD640064CBD1 /* ExerciseView.swift */,
 				16AD04E62BBFCD640064CBD1 /* UserRoutineView.swift */,
 				6A8991AE2BD9A84B0086F14E /* ExerciseViewModel.swift */,
+				0FCA11902BDB018600142E1D /* RecomendedExerciseView.swift */,
 			);
 			name = Routine;
 			path = DHC/Views/Routine;
@@ -403,6 +406,7 @@
 				16643C682BA9BBBC00D9B1C6 /* PHPickerView.swift in Sources */,
 				5F781C022BBF3B3C00D4C149 /* (null) in Sources */,
 				5F781BF32BBF373B00D4C149 /* PreferencePageView.swift in Sources */,
+				0FCA11912BDB018600142E1D /* RecomendedExerciseView.swift in Sources */,
 				16643C522BA9861600D9B1C6 /* NavigationButtonDS.swift in Sources */,
 				6A8991B82BD9C6040086F14E /* BalanceView.swift in Sources */,
 				16993C092BCC3AAB0019F175 /* ExerciseManager.swift in Sources */,

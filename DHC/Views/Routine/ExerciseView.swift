@@ -18,7 +18,7 @@ struct ExerciseView: View {
             Section(header: Text("Step Count")) {
                 Text("\(viewModel.stepCount) step")
             }
-            Section(header: Text("Excercies")) {
+            Section(header: Text("Excercıes")) {
                 ForEach(viewModel.dailyExercises, id: \.self) { exercise in
                     Text(exercise)
                 }
