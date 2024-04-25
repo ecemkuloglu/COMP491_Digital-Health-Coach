@@ -12,20 +12,32 @@ class PreferenceManager {
     static let shared = PreferenceManager()
     private let db = Firestore.firestore()
 
-    func savePreference(preferenceTitle: String, option: String) {
-        guard let userId = Auth.auth().currentUser?.uid else {
-            print("User not authenticated.")
-            return
-        }
-
+    func savePreference(userId: String, preferenceTitle: String, option: String, completion: @escaping (Bool, Error?) -> Void) {
         let userRef = db.collection("users").document(userId)
         let field = preferenceTitle.lowercased().replacingOccurrences(of: " ", with: "_") + "_preference"
 
         userRef.setData([field: option], merge: true) { error in
             if let error = error {
-                print("Error saving preference for \(preferenceTitle): \(error.localizedDescription)")
+                completion(false, error)
             } else {
-                print("Preference saved successfully for \(preferenceTitle): \(option)")
+                completion(true, nil)
+            }
+        }
+    }
+
+    func fetchUserPreference(userId: String, preferenceTitle: String, completion: @escaping (String?, Error?) -> Void) {
+        let userRef = db.collection("users").document(userId)
+        let field = preferenceTitle.lowercased().replacingOccurrences(of: " ", with: "_") + "_preference"
+
+        userRef.getDocument { documentSnapshot, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            if let document = documentSnapshot, document.exists, let data = document.data() {
+                completion(data[field] as? String, nil)
+            } else {
+                completion(nil, nil)
             }
         }
     }

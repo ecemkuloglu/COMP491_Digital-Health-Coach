@@ -15,10 +15,10 @@ struct ExerciseView: View {
 
     var body: some View {
         List {
-            Section(header: Text("Adım Sayısı")) {
-                Text("\(viewModel.stepCount) adım")
+            Section(header: Text("Step Count")) {
+                Text("\(viewModel.stepCount) step")
             }
-            Section(header: Text("Egzersizler")) {
+            Section(header: Text("Excercies")) {
                 ForEach(viewModel.dailyExercises, id: \.self) { exercise in
                     Text(exercise)
                 }

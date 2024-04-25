@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PreferencePageView: View {
-    let preferences: [Preference]  // This should be provided with actual preference data
+    let preferences: [Preference]  
 
     var body: some View {
         NavigationView {
