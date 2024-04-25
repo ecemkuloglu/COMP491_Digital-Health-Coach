@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F6F982E2BDA83040005B58A /* AwardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6F982D2BDA83040005B58A /* AwardView.swift */; };
+		0F6F98332BDA837B0005B58A /* AwardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6F98322BDA837B0005B58A /* AwardViewModel.swift */; };
 		0FB075672BB4F7C8002F78B5 /* MotivationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB075662BB4F7C8002F78B5 /* MotivationView.swift */; };
 		0FB075692BB4F7EB002F78B5 /* MotivationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB075682BB4F7EB002F78B5 /* MotivationViewModel.swift */; };
 		16643BF82BA0975300D9B1C6 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16643BF72BA0975300D9B1C6 /* AuthenticationManager.swift */; };
@@ -59,6 +61,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F6F982D2BDA83040005B58A /* AwardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardView.swift; sourceTree = "<group>"; };
+		0F6F98322BDA837B0005B58A /* AwardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardViewModel.swift; sourceTree = "<group>"; };
 		0FB075602BB4F6E3002F78B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0FB075662BB4F7C8002F78B5 /* MotivationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationView.swift; sourceTree = "<group>"; };
 		0FB075682BB4F7EB002F78B5 /* MotivationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotivationViewModel.swift; sourceTree = "<group>"; };
@@ -121,6 +125,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F6F982C2BDA82EE0005B58A /* Award */ = {
+			isa = PBXGroup;
+			children = (
+				0F6F982D2BDA83040005B58A /* AwardView.swift */,
+				0F6F98322BDA837B0005B58A /* AwardViewModel.swift */,
+			);
+			path = Award;
+			sourceTree = "<group>";
+		};
 		0FB075612BB4F72D002F78B5 /* Motivation */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +302,7 @@
 		FFF04F1E2B97967400D1F1CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0F6F982C2BDA82EE0005B58A /* Award */,
 				6A8991B62BD9C5E60086F14E /* Balance */,
 				16AD04E42BBFCD640064CBD1 /* Routine */,
 				0FB075612BB4F72D002F78B5 /* Motivation */,
@@ -405,6 +419,7 @@
 				6A8991B82BD9C6040086F14E /* BalanceView.swift in Sources */,
 				16993C092BCC3AAB0019F175 /* ExerciseManager.swift in Sources */,
 				16643C562BA986EC00D9B1C6 /* ButtonDS.swift in Sources */,
+				0F6F98332BDA837B0005B58A /* AwardViewModel.swift in Sources */,
 				6A8991B52BD9BEE90086F14E /* PreferenceSelectionView.swift in Sources */,
 				5F781C052BBF3B8800D4C149 /* (null) in Sources */,
 				16643C022BA1790B00D9B1C6 /* StorageManager.swift in Sources */,
@@ -425,6 +440,7 @@
 				6A8991BC2BD9C93F0086F14E /* BalanceManager.swift in Sources */,
 				16643C582BA9879C00D9B1C6 /* SignUpView.swift in Sources */,
 				16643C5F2BA9B67400D9B1C6 /* ProfileViewModel.swift in Sources */,
+				0F6F982E2BDA83040005B58A /* AwardView.swift in Sources */,
 				16643C502BA985CE00D9B1C6 /* Radius.swift in Sources */,
 				16AD04E82BBFCD640064CBD1 /* UserRoutineView.swift in Sources */,
 				16643C4C2BA9854400D9B1C6 /* AuthenticationView.swift in Sources */,

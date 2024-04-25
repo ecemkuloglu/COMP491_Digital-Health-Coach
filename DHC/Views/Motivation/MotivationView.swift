@@ -12,7 +12,7 @@ struct MotivationView: View {
         
     var body: some View {
         VStack {
-            Text("Hadi Hareketlen")
+            Text("Time to Move")
                 .padding()
         }
         .onAppear {
