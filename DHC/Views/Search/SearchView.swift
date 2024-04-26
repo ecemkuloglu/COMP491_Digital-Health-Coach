@@ -1,5 +1,3 @@
-
-
 //
 //  SearchView.swift
 //  DHC
@@ -10,77 +8,37 @@
 import SwiftUI
 
 struct SearchView: View {
+    @StateObject private var viewModel = SearchViewModel()
     var body: some View {
         VStack {
-            HStack {
-                            Spacer()
-                            Button(action: {
-                                // Handle search button action here
-                                // You can implement your search logic
-                            }) {
-                                Image(systemName: "magnifyingglass")
-                                    .font(.title)
-                                    .foregroundColor(.blue)
-                                    //.padding()
-                            }
-                        }
+            // Title
             Text("EXERCISES")
-                .font(.subheadline)
+                .font(.headline)
                 .padding()
             
-            ScrollView {
-                            LazyVStack {
-                                ForEach(1..<11) { index in
-                                    ExerciseBox(index: index)
-                                        .padding(.vertical, 5)
-                                }
-                            }
-                        }
-            
-            Spacer()
-            
-            /*Button(action: {
-                // Handle search button action here
-                // You can implement your search logic
-            }) {
-                Text("Search")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(10)
-            }*/
-            //.padding()
-            
-            
+            List(viewModel.exercises, id: \.name) { exercise in
+                VStack(alignment: .leading) {
+                    Text(exercise.name)
+                        .font(.headline)
+                    Text("Goal: \(exercise.goal)")
+                        .font(.subheadline)
+                    Text("Focus Area: \(exercise.focus_area)")
+                        .font(.subheadline)
+                    Text("Description: \(exercise.desc)")
+                        .font(.subheadline)
+                }
+            }
+            .onAppear {
+                viewModel.loadExercises()
+            }
         }
+        .navigationBarItems(trailing:
+                                Button(action: {
+                                    // action
+                                }) {
+                                    Image(systemName: "magnifyingglass")
+                                        .font(.title)
+                                }
+        )
     }
 }
-
-struct ExerciseBox: View {
-    let index: Int
-    
-    var body: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .fill(Color.gray.opacity(0.2))
-            .frame(height: 100)
-            .overlay(
-                Text("Exercise #\(index)")
-                    .font(.headline)
-                    .foregroundColor(.black)
-            )
-            .padding(.horizontal)
-    }
-}
-
-
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
-    }
-}
-
-
-// SearchView.swift
-
-
