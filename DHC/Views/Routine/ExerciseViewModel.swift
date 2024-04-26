@@ -90,7 +90,7 @@ class ExerciseViewModel: ObservableObject {
                     date: selectedDate
                 )
                 print("Exercise saved successfully.")
-                await fetchExercisesForSelectedDate()
+                fetchExercisesForSelectedDate()
             } catch {
                 print("Error saving exercise: \(error)")
             }
