@@ -11,20 +11,20 @@ import UserNotifications
 class MotivationViewModel: ObservableObject {
     func sendMotivationQuote() {
         let motivationQuotes = [
-            "Hayat bir maraton değil, sprint gibidir. En iyi performansınızı sergileyin!",
-            "Sıkı çalışmanın sonucunda başarı gelir. Asla vazgeçmeyin!",
-            "Sınırlarınızı zorlayın ve sınırlarınızın ötesine geçin. Sadece bu şekilde gelişirsiniz.",
-            "Her antrenman bir yatırımdır. Gelecekteki başarınız için bugün çalışın.",
-            "Zafer terinin tadıyla gelir. Her ter damlası size daha yaklaştırır.",
-            "Spor yapmak, bedeninizin yanı sıra zihniniz için de iyidir.",
-            "Başarı için her zaman en iyisini verin, sonuçlar kendiliğinden gelecektir.",
-            "Spor yapmak, gücünüzü keşfetmenin ve geliştirmenin bir yoludur.",
-            "Engeller sadece zihnimizde var olan sınırlamalardır. Onları aşabiliriz!",
-            "Spor sadece bir aktivite değil, bir yaşam tarzıdır.",
+            "Life is not a marathon, it's like a sprint. Give your best performance!",
+            "Success comes as a result of hard work. Never give up!",
+            "Push your limits and go beyond them. That's the only way you'll grow.",
+            "Every workout is an investment. Work for your future success today.",
+            "Victory comes with the taste of sweat. Every drop of sweat brings you closer.",
+            "Exercising is good not only for your body but also for your mind.",
+            "Always give your best for success, results will come naturally.",
+            "Exercising is a way to discover and improve your strength.",
+            "Obstacles are only limitations existing in our minds. We can overcome them!",
+            "Exercise is not just an activity, it's a lifestyle."
                
         ]
         let identifier = "my-morning-notification"
-        let title = "Hadi Hareketlen"
+        let title = "Time to Move"
                
         let randomQuote = motivationQuotes.randomElement() ?? ""
 
@@ -40,9 +40,9 @@ class MotivationViewModel: ObservableObject {
                
         notificationCenter.add(request) { (error) in
                    if let error = error {
-                       print("Bildirim ekleme hatası: \(error)")
+                       print("Error when adding notification: \(error)")
                    } else {
-                       print("Bildirim başarıyla eklendi.")
+                       print("Notification added succesfully.")
                    }
 
                    
