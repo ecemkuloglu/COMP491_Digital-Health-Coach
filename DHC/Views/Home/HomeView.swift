@@ -41,7 +41,7 @@ struct HomeView: View {
                     Image(systemName: "magnifyingglass")
                 }
                 .tag(2)
-            MotivationView()
+            BalanceView(viewModel: balanceViewModel)
             //Text("Category View")
                 .tabItem {
                     Image(systemName: "house.fill")

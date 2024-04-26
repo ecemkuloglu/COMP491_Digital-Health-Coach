@@ -16,37 +16,39 @@ struct UserRoutineView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                CalendarView(selectedDate: $selectedDate)
-                NavigationLink(destination: ExerciseView(isPresented: $showExerciseView, savedData: $savedData, selectedDate: selectedDate, viewModel: viewModel), isActive: $showExerciseView) {
-                    EmptyView()
-                }
-                NavigationLink(destination: RecomendedExerciseView(isPresented: $showRecomendedExerciseView, viewModel: viewModel), isActive: $showRecomendedExerciseView) {
-                    EmptyView()
-                }
-                Picker("Select Exercise", selection: $viewModel.selectedExerciseIndex) {
-                    ForEach(0..<viewModel.exercises.count, id: \.self) { index in
-                        Text(viewModel.exercises[index]).tag(index)
+            ScrollView {
+                VStack {
+                    CalendarView(selectedDate: $selectedDate)
+                    NavigationLink(destination: ExerciseView(isPresented: $showExerciseView, savedData: $savedData, selectedDate: selectedDate, viewModel: viewModel), isActive: $showExerciseView) {
+                        EmptyView()
+                    }
+                    NavigationLink(destination: RecomendedExerciseView(isPresented: $showRecomendedExerciseView, viewModel: viewModel), isActive: $showRecomendedExerciseView) {
+                        EmptyView()
+                    }
+                    Picker("Select Exercise", selection: $viewModel.selectedExerciseIndex) {
+                        ForEach(0..<viewModel.exercises.count, id: \.self) { index in
+                            Text(viewModel.exercises[index]).tag(index)
+                        }
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                    
+                    DurationPickerView(viewModel: viewModel)
+                    
+                    Button("Save") {
+                        viewModel.saveExercise()
+                        viewModel.selectedDate = selectedDate
+                        savedData.append("\(viewModel.exercises[viewModel.selectedExerciseIndex]) done for \(viewModel.minutesRange[viewModel.selectedMinutesIndex]) min \(viewModel.secondsRange[viewModel.selectedSecondsIndex]) sec")
+                    }.padding()
+                    Button("Your done exercises") {
+                        showExerciseView = true
+                    }
+                    Button("Your recomended exercises") {
+                        showRecomendedExerciseView = true
                     }
                 }
-                .pickerStyle(WheelPickerStyle())
-
-                DurationPickerView(viewModel: viewModel)
-
-                Button("Save") {
-                    viewModel.saveExercise()
-                    viewModel.selectedDate = selectedDate
-                    savedData.append("\(viewModel.exercises[viewModel.selectedExerciseIndex]) done for \(viewModel.minutesRange[viewModel.selectedMinutesIndex]) min \(viewModel.secondsRange[viewModel.selectedSecondsIndex]) sec")
-                }.padding()
-                Button("Your done exercises") {
-                    showExerciseView = true
-                }
-                Button("Your recomended exercises") {
-                    showRecomendedExerciseView = true
-                }
+                .padding()
+                .navigationTitle("Routine Page")
             }
-            .padding()
-            .navigationTitle("Routine Page")
         }
     }
 }
