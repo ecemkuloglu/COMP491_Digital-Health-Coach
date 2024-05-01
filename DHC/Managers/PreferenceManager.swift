@@ -14,20 +14,33 @@ class PreferenceManager {
 
     func savePreference(userId: String, preferenceTitle: String, option: String, completion: @escaping (Bool, Error?) -> Void) {
         let userRef = db.collection("users").document(userId)
-        let field = preferenceTitle.lowercased().replacingOccurrences(of: " ", with: "_") + "_preference"
+        let field = fieldName(from: preferenceTitle)
 
-        userRef.setData([field: option], merge: true) { error in
+        userRef.getDocument { documentSnapshot, error in
             if let error = error {
                 completion(false, error)
-            } else {
-                completion(true, nil)
+                return
+            }
+
+            if let document = documentSnapshot, document.exists, let data = document.data() {
+                if let currentPreference = data[field] as? String, currentPreference == option {
+                    completion(true, nil)
+                } else {
+                    userRef.setData([field: option], merge: true) { error in
+                        if let error = error {
+                            completion(false, error)
+                        } else {
+                            completion(true, nil)
+                        }
+                    }
+                }
             }
         }
     }
 
     func fetchUserPreference(userId: String, preferenceTitle: String, completion: @escaping (String?, Error?) -> Void) {
         let userRef = db.collection("users").document(userId)
-        let field = preferenceTitle.lowercased().replacingOccurrences(of: " ", with: "_") + "_preference"
+        let field = fieldName(from: preferenceTitle)
 
         userRef.getDocument { documentSnapshot, error in
             if let error = error {
@@ -48,19 +61,35 @@ class PreferenceManager {
         
         userRef.getDocument { documentSnapshot, error in
             if let error = error {
+                print("Error fetching preferences: \(error.localizedDescription)")
                 completion(nil, error)
                 return
             }
-            if let document = documentSnapshot, document.exists, let data = document.data() {
+            guard let document = documentSnapshot, document.exists else {
+                print("Document does not exist for user: \(userId)")
+                completion(nil, nil)
+                return
+            }
+            if let data = document.data() {
                 for (key, value) in data {
-                    if key.contains("_preference"), let preference = value as? String {
-                        preferences[key] = preference
+                    let processedKey = key.components(separatedBy: "_preference").first! + "_preference"
+                    if let preference = value as? String {
+                        preferences[processedKey] = preference
                     }
                 }
                 completion(preferences, nil)
             } else {
+                print("No data available on document.")
                 completion(nil, nil)
             }
+        }
+    }
+    func fieldName(from title: String) -> String {
+        let processedTitle = title.lowercased().replacingOccurrences(of: " ", with: "_")
+        if processedTitle.hasSuffix("_preference") {
+            return processedTitle
+        } else {
+            return processedTitle + "_preference"
         }
     }
 }

@@ -29,6 +29,7 @@ class ExerciseViewModel: ObservableObject {
 
     init() {
         fetchExercisesFromManager()
+        fetchPreferencesAndFilterExercises()
     }
 
     private func fetchExercisesFromManager() {
@@ -43,33 +44,7 @@ class ExerciseViewModel: ObservableObject {
             }
         }
     }
-    private func fetchPreferences() {
-            guard let userId = Auth.auth().currentUser?.uid else {
-                print("Error: User not logged in")
-                return
-            }
-            PreferenceManager.shared.fetchAllPreferences(userId: userId) { preferences, error in
-                if let error = error {
-                    print("Error fetching preferences: \(error.localizedDescription)")
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.preferences = preferences ?? [:]
-                    self.filterExercises()
-                }
-            }
-        }
-    func filterExercises() {
-            if preferences.isEmpty {
-                filteredExercises = exercises
-            } else {
-                filteredExercises = exercises.filter { exercise in
-                    let focusAreaPreference = preferences["focus_area_preference"] ?? ""
-                    return exercise.contains(focusAreaPreference)
-                }
-            }
-        }
-    
+
     func saveExercise() {
         let exercise = exercises[selectedExerciseIndex]
         let durationMinutes = minutesRange[selectedMinutesIndex]
@@ -115,6 +90,35 @@ class ExerciseViewModel: ObservableObject {
         }
         fetchStepCount()
     }
+    
+    func fetchPreferencesAndFilterExercises() {
+            guard let userId = Auth.auth().currentUser?.uid else {
+                print("Error: User not logged in")
+                return
+            }
+            PreferenceManager.shared.fetchAllPreferences(userId: userId) { [weak self] preferences, error in
+                guard let self = self else { return }
+                if let error = error {
+                    print("Error fetching preferences: \(error.localizedDescription)")
+                    return
+                }
+                self.preferences = preferences ?? [:]
+                self.updateFilteredExercises()
+            }
+        }
+
+        func updateFilteredExercises() {
+            Task {
+                do {
+                    let matchedExercises = try await ExerciseManager.shared.fetchExercisesMatchingPreferences(preferences: self.preferences)
+                    DispatchQueue.main.async {
+                        self.filteredExercises = matchedExercises.map { $0.name }
+                    }
+                } catch {
+                    print("Error fetching filtered exercises: \(error)")
+                }
+            }
+        }
     
     func fetchStepCount() {
         guard let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {

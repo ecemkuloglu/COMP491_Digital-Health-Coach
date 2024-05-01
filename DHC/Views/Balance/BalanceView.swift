@@ -10,6 +10,7 @@ import AVFoundation
 
 struct BalanceView: View {
     @ObservedObject var viewModel: BalanceViewModel
+    @Binding var isPresented: Bool
     @State private var remainingSeconds = 30
     @State private var timer: Timer?
     @Environment(\.presentationMode) var presentationMode
@@ -19,10 +20,6 @@ struct BalanceView: View {
             Text("Remaining: \(remainingSeconds) sec")
                 .font(.largeTitle)
                 .padding()
-
-            Text("X: \(viewModel.gyroData.x)")
-            Text("Y: \(viewModel.gyroData.y)")
-            Text("Z: \(viewModel.gyroData.z)")
 
             ProgressView(value: Double(30 - remainingSeconds), total: 30)
                 .progressViewStyle(.linear)
@@ -63,9 +60,7 @@ struct BalanceView: View {
     }
 
     func playSound() {
-        guard let url = Bundle.main.url(forResource: "soundName", withExtension: "wav") else { return }
-        var sound: SystemSoundID = 0
-        AudioServicesCreateSystemSoundID(url as CFURL, &sound)
-        AudioServicesPlaySystemSound(sound)
+        let systemSoundID: SystemSoundID = 1003
+        AudioServicesPlaySystemSound(systemSoundID)
     }
 }
