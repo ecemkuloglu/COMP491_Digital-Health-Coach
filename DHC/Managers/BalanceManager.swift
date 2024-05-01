@@ -4,16 +4,20 @@
 //
 //  Created by Lab on 25.04.2024.
 //
-
-
 import Foundation
 import Firebase
 
 class BalanceManager {
-    func saveGyroscopeData(x: Double, y: Double, z: Double) {
-        guard let userID = Auth.auth().currentUser?.uid else { return }
+    static let shared = BalanceManager() // Singleton instance for easy access
 
-        let db = Firestore.firestore()
+    private let db = Firestore.firestore()
+
+    func saveGyroscopeData(x: Double, y: Double, z: Double) {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("User not logged in")
+            return
+        }
+
         let gyroscopeData: [String: Any] = [
             "x": x,
             "y": y,

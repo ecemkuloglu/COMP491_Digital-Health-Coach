@@ -55,6 +55,33 @@ class ExerciseManager {
         return ExerciseModel(name: name, desc: desc,photo_url: photo_url, exp_before: exp_before, focus_area: focus_area, goal: goal, loc_preference: loc_preference)
     }
     
+    func fetchExercisesMatchingPreferences(preferences: [String: String]) async throws -> [ExerciseModel] {
+            var query: Query = db.collection("exercises")
+            
+            if let focusArea = preferences["focus_area_preference"] {
+                query = query.whereField("focus_area", isEqualTo: focusArea)
+            }
+            if let goal = preferences["goal_preference"] {
+                query = query.whereField("goal", isEqualTo: goal)
+            }
+            if let expBefore = preferences["exp_before_preference"] {
+                query = query.whereField("exp_before", isEqualTo: expBefore)
+            }
+            if let locPreference = preferences["loc_preference"] {
+                query = query.whereField("loc_preference", isEqualTo: locPreference)
+            }
+
+            let querySnapshot = try await query.getDocuments()
+            var exercises: [ExerciseModel] = []
+            for document in querySnapshot.documents {
+                if let exercise = try? document.data(as: ExerciseModel.self) {
+                    exercises.append(exercise)
+                }
+            }
+            return exercises
+            
+        }
+    
     enum ExerciseManagerError: Error {
         case invalidData
         case exerciseNotFound

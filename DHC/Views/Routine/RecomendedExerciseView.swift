@@ -20,7 +20,8 @@ struct RecomendedExerciseView: View {
             }
         }
         .onAppear {
-            viewModel.filterExercises()
+            viewModel.fetchPreferencesAndFilterExercises()
+            viewModel.updateFilteredExercises()
         }
     }
 }
