@@ -9,36 +9,51 @@ import SwiftUI
 
 struct SearchView: View {
     @StateObject private var viewModel = SearchViewModel()
+    @State private var searchText = ""
+    
     var body: some View {
-        VStack {
-            // Title
-            Text("EXERCISES")
-                .font(.headline)
-                .padding()
-            
-            List(viewModel.exercises, id: \.name) { exercise in
-                VStack(alignment: .leading) {
-                    Text(exercise.name)
-                        .font(.headline)
-                    Text("Goal: \(exercise.goal)")
-                        .font(.subheadline)
-                    Text("Focus Area: \(exercise.focus_area)")
-                        .font(.subheadline)
-                    Text("Description: \(exercise.desc)")
-                        .font(.subheadline)
-                }
-            }
-            .onAppear {
-                viewModel.loadExercises()
+        VStack(spacing: .zero) {
+            if viewModel.isLoading {
+                LoadingView()
+            } else {
+                searchBar
+                listView
             }
         }
-        .navigationBarItems(trailing:
-                                Button(action: {
-                                    // action
-                                }) {
-                                    Image(systemName: "magnifyingglass")
-                                        .font(.title)
-                                }
-        )
+        .onAppear {
+            viewModel.loadExercises()
+        }
+        .navigationTitle("Exercises")
+    }
+    
+    private var searchBar: some View {
+        TextField("Search", text: $searchText)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding(Spacing.spacing_1)
+    }
+    
+    
+    private var listView: some View {
+        List(searchResults, id: \.name) { exercise in
+            NavigationLink(destination: SearchDetailedView(exercise: exercise)){
+                SearchListRow(exercise: exercise)
+            }
+        }
+        .padding(Spacing.spacing_2)
+    }
+    
+    var searchResults: [ExerciseModel] {
+        if searchText.isEmpty {
+            return viewModel.exercises
+        } else {
+            return viewModel.exercises.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
     }
 }
+
+struct SearchView_Preview: PreviewProvider {
+    static var previews: some View {
+        SearchView()
+    }
+}
+
