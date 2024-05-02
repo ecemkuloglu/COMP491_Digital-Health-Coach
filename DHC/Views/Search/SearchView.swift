@@ -13,6 +13,7 @@ struct SearchView: View {
     
     var body: some View {
         VStack(spacing: .zero) {
+            Text("Exercises").font(.title)
             if viewModel.isLoading {
                 LoadingView()
             } else {
@@ -23,7 +24,7 @@ struct SearchView: View {
         .onAppear {
             viewModel.loadExercises()
         }
-        .navigationTitle("Exercises")
+       // .navigationTitle("Exercises")
     }
     
     private var searchBar: some View {

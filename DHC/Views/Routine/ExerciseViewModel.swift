@@ -142,4 +142,50 @@ class ExerciseViewModel: ObservableObject {
         }
         healthStore.execute(query)
     }
+    
+    func requestHealthKitPermissions() {
+        let healthKitTypesToRead: Set<HKObjectType> = [
+            HKObjectType.quantityType(forIdentifier: .stepCount)!,
+            HKObjectType.workoutType()
+            // Add other data types your app needs to read
+        ]
+
+        let healthKitTypesToWrite: Set<HKSampleType> = [
+            HKObjectType.workoutType()
+            // Add other data types your app needs to write
+        ]
+
+        healthStore.requestAuthorization(toShare: healthKitTypesToWrite, read: healthKitTypesToRead) { success, error in
+            if !success {
+                // Handle errors here.
+                print("Permission denied by user: \(error?.localizedDescription ?? "Unknown error")")
+            }
+        }
+    }
+    
+    func saveWorkout(duration: TimeInterval, start: Date, end: Date) {
+        let workout = HKWorkout(activityType: .traditionalStrengthTraining, start: start, end: end, duration: duration, totalEnergyBurned: nil, totalDistance: nil, metadata: nil)
+
+        healthStore.save(workout) { (success, error) in
+            if success {
+                print("Workout saved successfully")
+            } else {
+                print("Error saving workout: \(error?.localizedDescription ?? "Unknown error")")
+            }
+        }
+    }
+    
+    func requestAuthorization() {
+        healthStore.requestAuthorization(toShare: [], read: []) { success, error in
+            if success {
+                print("Authorization granted.")
+            } else {
+                print("Authorization failed with error: \(error?.localizedDescription ?? "unknown error")")
+            }
+        }
+    }
+
+
 }
+
+

@@ -1,3 +1,4 @@
+
 //
 //  UserRoutineView.swift
 //  DHC
@@ -15,41 +16,48 @@ struct UserRoutineView: View {
     @State private var selectedDate = Date()
     
     var body: some View {
-        NavigationView {
+        
             ScrollView {
                 VStack {
+                    
+                    Text("Your Routine").font(.title)
                     CalendarView(selectedDate: $selectedDate)
                     Picker("Select Exercise", selection: $viewModel.selectedExerciseIndex) {
                         ForEach(0..<viewModel.exercises.count, id: \.self) { index in
                             Text(viewModel.exercises[index]).tag(index)
                         }
                     }
-                    .pickerStyle(WheelPickerStyle())
+                    .padding()
+                    .pickerStyle(MenuPickerStyle())
                     DurationPickerView(viewModel: viewModel)
                     Button("Save") {
                         viewModel.saveExercise()
                         viewModel.selectedDate = selectedDate
                         savedData.append("\(viewModel.exercises[viewModel.selectedExerciseIndex]) done for \(viewModel.minutesRange[viewModel.selectedMinutesIndex]) min \(viewModel.secondsRange[viewModel.selectedSecondsIndex]) sec")
                     }
+                    .padding()
                     Button("Your done exercises") {
                         showExerciseView = true
                     }
+                    .padding()
                     NavigationLink(destination: ExerciseView(isPresented: $showExerciseView, savedData: $savedData, selectedDate: selectedDate, viewModel: viewModel), isActive: $showExerciseView) {
                         EmptyView()
                     }
+                    
                     Button("Your recomended exercises") {
                         showRecomendedExerciseView = true
                     }
+                    .padding()
                     NavigationLink(destination: RecomendedExerciseView(isPresented: $showRecomendedExerciseView, viewModel: viewModel), isActive: $showRecomendedExerciseView) {
                         EmptyView()
                     }
+        
                 }
-                .padding()
-                .navigationTitle("Routine Page")
+          
 
             }
         }
-    }
+    
 }
 
 struct DurationPickerView: View {
@@ -63,7 +71,7 @@ struct DurationPickerView: View {
                     Text("\(viewModel.minutesRange[index])").tag(index)
                 }
             }
-            .pickerStyle(WheelPickerStyle())
+            .pickerStyle(MenuPickerStyle())
             .frame(width: 100)
 
             Text("Duration (sec):")
@@ -72,8 +80,10 @@ struct DurationPickerView: View {
                     Text("\(viewModel.secondsRange[index])").tag(index)
                 }
             }
-            .pickerStyle(WheelPickerStyle())
+            .pickerStyle(MenuPickerStyle())
             .frame(width: 100)
+           
+            
         }
     }
 }
@@ -88,5 +98,7 @@ struct CalendarView: View {
             displayedComponents: .date
         )
         .datePickerStyle(GraphicalDatePickerStyle())
+        .frame(width: 280, height: 300)
+        
     }
 }
