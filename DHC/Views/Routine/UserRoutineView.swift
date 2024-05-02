@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct UserRoutineView: View {
     @State private var showExerciseView = false
     @State private var showRecomendedExerciseView = false
@@ -15,78 +16,109 @@ struct UserRoutineView: View {
     @State private var selectedDate = Date()
     
     var body: some View {
-        NavigationView {
-            ScrollView {
+        //ScrollView {
+            VStack {
+                Text("Your Routine").font(.title)
+                ScrollView {
+                //Text("Your Routine").font(.title)
+                CalendarView(selectedDate: $selectedDate)
+                                    Picker("Select Exercise", selection: $viewModel.selectedExerciseIndex) {
+                                        ForEach(0..<viewModel.exercises.count, id: \.self) { index in
+                                            Text(viewModel.exercises[index]).tag(index)
+                                        }
+                                    }
+                                    //.pickerStyle(WheelPickerStyle())
+                                    .pickerStyle(MenuPickerStyle())
+                DurationPickerView(viewModel: viewModel)
                 VStack {
-                    CalendarView(selectedDate: $selectedDate)
-                    Picker("Select Exercise", selection: $viewModel.selectedExerciseIndex) {
-                        ForEach(0..<viewModel.exercises.count, id: \.self) { index in
-                            Text(viewModel.exercises[index]).tag(index)
-                        }
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                    DurationPickerView(viewModel: viewModel)
                     Button("Save") {
                         viewModel.saveExercise()
                         viewModel.selectedDate = selectedDate
                         savedData.append("\(viewModel.exercises[viewModel.selectedExerciseIndex]) done for \(viewModel.minutesRange[viewModel.selectedMinutesIndex]) min \(viewModel.secondsRange[viewModel.selectedSecondsIndex]) sec")
                     }
-                    Button("Your done exercises") {
-                        showExerciseView = true
-                    }
+                    .padding()
+                    
                     NavigationLink(destination: ExerciseView(isPresented: $showExerciseView, savedData: $savedData, selectedDate: selectedDate, viewModel: viewModel), isActive: $showExerciseView) {
                         EmptyView()
                     }
-                    Button("Your recomended exercises") {
+                }
+                VStack {
+                    Button("Your done exercises") {
+                        showExerciseView = true
+                    }
+                    .padding()
+                    
+                    NavigationLink(destination: ExerciseView(isPresented: $showExerciseView, savedData: $savedData, selectedDate: selectedDate, viewModel: viewModel), isActive: $showExerciseView) {
+                        EmptyView()
+                    }
+                }
+                VStack {
+                    Button("Your recommended exercises") {
                         showRecomendedExerciseView = true
                     }
+                    .padding()
+                    
                     NavigationLink(destination: RecomendedExerciseView(isPresented: $showRecomendedExerciseView, viewModel: viewModel), isActive: $showRecomendedExerciseView) {
                         EmptyView()
                     }
                 }
-                .padding()
-                .navigationTitle("Routine Page")
-
             }
+
+        
         }
+        
     }
 }
-
 struct DurationPickerView: View {
     @ObservedObject var viewModel: ExerciseViewModel
+    let screenWidth = UIScreen.main.bounds.width
 
     var body: some View {
-        HStack {
-            Text("Duration (min):")
-            Picker("", selection: $viewModel.selectedMinutesIndex) {
-                ForEach(0..<viewModel.minutesRange.count, id: \.self) { index in
-                    Text("\(viewModel.minutesRange[index])").tag(index)
+        VStack {
+            HStack {
+                Text("Duration (min):")
+                
+                Picker("", selection: $viewModel.selectedMinutesIndex) {
+                    ForEach(0..<viewModel.minutesRange.count, id: \.self) { index in
+                        Text("\(viewModel.minutesRange[index])").tag(index)
+                    }
                 }
-            }
-            .pickerStyle(WheelPickerStyle())
-            .frame(width: 100)
-
-            Text("Duration (sec):")
-            Picker("", selection: $viewModel.selectedSecondsIndex) {
-                ForEach(0..<viewModel.secondsRange.count, id: \.self) { index in
-                    Text("\(viewModel.secondsRange[index])").tag(index)
+                .pickerStyle(MenuPickerStyle())
+                Text("Duration (sec):")
+                
+                Picker("", selection: $viewModel.selectedSecondsIndex) {
+                    ForEach(0..<viewModel.secondsRange.count, id: \.self) { index in
+                        Text("\(viewModel.secondsRange[index])").tag(index)
+                    }
                 }
+                .pickerStyle(MenuPickerStyle())
+               
+  
             }
-            .pickerStyle(WheelPickerStyle())
-            .frame(width: 100)
+            .padding()
         }
     }
 }
+
 
 struct CalendarView: View {
     @Binding var selectedDate: Date
-
+    
     var body: some View {
-        DatePicker(
-            "Select Date",
-            selection: $selectedDate,
-            displayedComponents: .date
-        )
-        .datePickerStyle(GraphicalDatePickerStyle())
+        VStack {
+            
+            DatePicker(
+              
+                "Select Date",
+                selection: $selectedDate,
+                displayedComponents: .date
+            )
+            .datePickerStyle(GraphicalDatePickerStyle())
+            //.frame(width: 280, height: 300)
+            .frame(width: 320, height: 320)
+        }
+      
     }
+
 }
+
