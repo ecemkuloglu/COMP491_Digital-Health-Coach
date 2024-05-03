@@ -47,7 +47,7 @@ struct HomeView: View {
                     Image(systemName: "house.fill")
                 }
                 .tag(3)
-            AwardView(viewModel: AwardViewModel())
+            Text("Category View")
                 .tabItem {
                     Image(systemName: "star")
                 }

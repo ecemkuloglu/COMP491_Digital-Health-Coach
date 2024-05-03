@@ -10,11 +10,11 @@ import SwiftUI
 
 struct AwardView: View {
     @ObservedObject var viewModel: AwardViewModel
+    
 
     var body: some View {
         VStack {
             Text("Awards").font(.title)
-
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 160))], spacing: 20) { // Adjust minimum width and spacing as needed
                     ForEach(viewModel.awards, id: \.name) { award in
@@ -35,7 +35,7 @@ struct AwardView: View {
 struct AwardItemView: View {
     let award: Award
     let badge: Badge?
-    @State private var isExpanded = false
+    @State private var isPopupVisible = false
     
     var body: some View {
         VStack {
@@ -47,29 +47,19 @@ struct AwardItemView: View {
                     .frame(width: 50, height: 50)
                     .padding()
                     .onTapGesture {
-                        withAnimation {
-                            // Sadece tıklanan rozet için genişleme durumunu değiştir
-                            isExpanded.toggle()
-                        }
+                        // Toggle the visibility of the popup
+                        isPopupVisible.toggle()
                     }
-            }
-            
-            if isExpanded {
-                VStack {
-                    Text(award.name)
-                        .font(.headline)
-                    
-                    Text(award.description)
-                        .font(.subheadline)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                }
-                .frame(maxWidth: .infinity)
+                    .colorMultiply(award.isAchieved ? .clear : .gray)
             }
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .background(Color.gray.opacity(0.1))
-        .cornerRadius(10) // Corner radius for aesthetic a
-        
+        .alert(isPresented: $isPopupVisible) {
+            Alert(title: Text(award.name),
+                  message: Text(award.description),
+                  dismissButton: .default(Text("Okay")))
+        }
     }
 }
+
