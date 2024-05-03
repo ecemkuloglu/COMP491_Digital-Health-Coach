@@ -10,6 +10,8 @@ import SwiftUI
 struct WelcomeView: View {
     @State private var showBalanceView = false
     @ObservedObject var viewModel = BalanceViewModel()
+    @State private var showAwardView = false
+    @ObservedObject var viewAwardModel = AwardViewModel()
     
     var body: some View {
         VStack {
@@ -30,14 +32,19 @@ struct WelcomeView: View {
                     .padding(.horizontal)
             }
             
-            //buraya ödüller eklensin
             VStack {
-                Color.blue
-                    .frame(height: 50)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-            }
-            .padding(.top)
+                Button(action: {
+                                showAwardView = true
+                            }) {
+                                Text("Awards")
+                                    .foregroundColor(.white)
+                            }
+                            .frame(height: 50)
+                            .background(Color.red)
+                            .cornerRadius(10)
+                            .padding(.horizontal)
+                        }
+                        .padding(.top)
 
             Button("You can test your balance from there") {
                 showBalanceView = true
@@ -45,6 +52,9 @@ struct WelcomeView: View {
             .padding()
             .buttonStyle(.borderedProminent)
             NavigationLink(destination: BalanceView(viewModel: viewModel, isPresented: $showBalanceView), isActive: $showBalanceView) {
+                EmptyView()
+            }
+            NavigationLink(destination: AwardView(viewModel: viewAwardModel), isActive: $showAwardView) {
                 EmptyView()
             }
         }

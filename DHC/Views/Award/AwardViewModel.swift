@@ -14,12 +14,13 @@ class AwardViewModel: ObservableObject {
     @Published var badges: [Badge] = [] // Array to hold badge data
 
     private var storageManager = StorageManager.shared
-
+    
+    
     func fetchAwardsAndBadges() {
         // Fetch awards from wherever you get them
         awards = [
-            Award(name: "Welcome", badgeId: "welcome_badge", description: "You earn this when you sign up for the app for the first time!"),
-            Award(name: "1 Week Award", badgeId: "1_week_badge", description: "You earn this when you exercise regularly for one week!")
+            Award(name: "Welcome", badgeId: "welcome_badge", description: "You earn this when you sign up for the app for the first time!", isAchieved: false),
+            Award(name: "1 Week Award", badgeId: "1_week_badge", description: "You earn this when you exercise regularly for one week!", isAchieved: false)
             // Add more awards as needed
         ]
 
@@ -47,6 +48,7 @@ struct Award {
     let name: String
     let badgeId: String
     let description: String
+    var isAchieved: Bool
 }
 
 struct Badge {
