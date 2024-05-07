@@ -15,5 +15,7 @@ struct ExerciseModel: Codable {
     let focus_area: String
     let goal: String
     let loc_preference: String
+    var steps: Int?  // Optional field to store step count
+    var caloriesBurned: Double?  // Optional field for calories
     
 }

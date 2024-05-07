@@ -8,13 +8,36 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import HealthKit
 
 class ExerciseManager {
     
     static let shared = ExerciseManager()
     private var db = Firestore.firestore()
+    private var healthStore = HKHealthStore()
+    
 
-    private init() {}
+    private init() {
+        requestHealthKitPermissions()
+    }
+    
+    private func requestHealthKitPermissions() {
+            let healthKitTypesToRead: Set<HKObjectType> = [
+                HKObjectType.quantityType(forIdentifier: .stepCount)!,
+                HKObjectType.workoutType()
+            ]
+            
+            let healthKitTypesToWrite: Set<HKSampleType> = [
+                HKObjectType.workoutType()
+            ]
+
+            healthStore.requestAuthorization(toShare: healthKitTypesToWrite, read: healthKitTypesToRead) { success, error in
+                if !success {
+                    // Handle the error here.
+                    print("HealthKit Authorization Failed: \(error?.localizedDescription ?? "Unknown error")")
+                }
+            }
+        }
     
     func fetchExercises() async throws -> [ExerciseModel] {
             let snapshot = try await db.collection("exercises").getDocuments()
@@ -98,4 +121,38 @@ class ExerciseManager {
             }
         }
     }
+    
+    func fetchStepCountForDate(date: Date, completion: @escaping (Int?, Error?) -> Void) {
+        guard let stepCountType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
+            completion(nil, NSError(domain: "HKError", code: 0, userInfo: [NSLocalizedDescriptionKey: "HealthKit Step Count Type not available."]))
+            return
+        }
+
+        let startOfDay = Calendar.current.startOfDay(for: date)
+        let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endOfDay, options: .strictStartDate)
+        
+        let query = HKStatisticsQuery(quantityType: stepCountType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
+            if let error = error {
+                completion(nil, error)
+            } else if let result = result, let sum = result.sumQuantity() {
+                let steps = Int(sum.doubleValue(for: HKUnit.count()))
+                completion(steps, nil)
+            }
+        }
+
+        healthStore.execute(query)
+    }
+    
+    func saveExerciseWithData(exercise: ExerciseModel, healthData: [String: Any]) async throws {
+        var data = try Firestore.Encoder().encode(exercise)
+        data["steps"] = healthData["steps"]
+        data["caloriesBurned"] = healthData["calories"]
+
+        let exerciseRef = Firestore.firestore().collection("exercises")
+        let documentRef = try await exerciseRef.addDocument(data: data)  // Store the reference
+        print("Exercise saved with document ID: \(documentRef.documentID)")
+    }
+
+    
 }

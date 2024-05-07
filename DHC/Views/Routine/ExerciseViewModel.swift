@@ -24,6 +24,9 @@ class ExerciseViewModel: ObservableObject {
 
     let minutesRange = Array(0...60)
     let secondsRange = Array(0...59)
+    
+    @Published var exercises1: [ExerciseModel] = []
+    @Published var message: String = ""
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -44,6 +47,8 @@ class ExerciseViewModel: ObservableObject {
             }
         }
     }
+    
+    
 
     func saveExercise() {
         let exercise = exercises[selectedExerciseIndex]
@@ -184,6 +189,58 @@ class ExerciseViewModel: ObservableObject {
             }
         }
     }
+    
+    func fetchTodaySteps() {
+        let today = Date()
+        ExerciseManager.shared.fetchStepCountForDate(date: today) { steps, error in
+            if let error = error {
+                print("Error fetching steps: \(error.localizedDescription)")
+            } else if let steps = steps {
+                print("Steps today: \(steps)")
+            }
+        }
+    }
+
+    func fetchHealthMetricsForExercise(date: Date) {
+        let healthStore = HKHealthStore()
+        // Example: Fetching steps
+        guard let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount) else { return }
+        let predicate = HKQuery.predicateForSamples(withStart: date, end: Date(), options: .strictStartDate)
+        
+        let query = HKStatisticsQuery(quantityType: stepType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
+            guard let result = result, let sum = result.sumQuantity() else {
+                print("Could not fetch steps: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            let steps = sum.doubleValue(for: HKUnit.count())
+            print("Steps during exercise: \(steps)")
+        }
+        healthStore.execute(query)
+    }
+    
+    func displayExerciseDetails(exercise: ExerciseModel) {
+        // Sample method in a ViewModel or similar UI-related class
+        print("Exercise: \(exercise.name)")
+        if let steps = exercise.steps {
+            print("Steps taken: \(steps)")
+        }
+        if let calories = exercise.caloriesBurned {
+            print("Calories burned: \(calories)")
+        }
+        // Further display logic to show these in the UI
+    }
+
+    func recommendNextExercise(basedOn exercise: ExerciseModel) {
+        if let steps = exercise.steps, steps > 10000 {
+            print("Consider a lighter activity tomorrow to rest.")
+        } else {
+            print("Great job! Ready to increase your challenge?")
+        }
+    }
+    
+    
+
+
 
 
 }
