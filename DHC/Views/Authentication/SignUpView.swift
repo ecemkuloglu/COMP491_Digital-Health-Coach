@@ -23,6 +23,7 @@ struct SignUpView: View {
                 .foregroundColor(Color.white)
                 .cornerRadius(10)
                 .autocapitalization(.none)
+                .disableAutocorrection(true)
             
             TextField("", text: $viewModel.email, prompt: Text("Email...")
                         .foregroundColor(Color.white))
@@ -31,6 +32,7 @@ struct SignUpView: View {
                 .foregroundColor(Color.white)
                 .cornerRadius(10)
                 .autocapitalization(.none)
+                .disableAutocorrection(true)
             
             SecureField("", text: $viewModel.password, prompt: Text("Password...")
                             .foregroundColor(Color.white))

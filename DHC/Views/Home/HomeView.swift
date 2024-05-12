@@ -36,24 +36,21 @@ struct HomeView: View {
                 }
                 .tag(1)
             SearchView()
-            //Text("Search View")
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                 }
                 .tag(2)
             WelcomeView()
-            //Text("Category View")
                 .tabItem {
                     Image(systemName: "house.fill")
                 }
                 .tag(3)
-            Text("Category View")
+            ChatbotView()
                 .tabItem {
                     Image(systemName: "star")
                 }
                 .tag(4)
             ProfileView(showSignInView: $showSignInView)
-//            Text("Profile View")
                 .tabItem {
                     Image(systemName: "person.circle.fill")
                 }

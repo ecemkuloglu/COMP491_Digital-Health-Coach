@@ -38,6 +38,10 @@
 		16993C0D2BE2757F0019F175 /* SearchListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16993C0C2BE2757F0019F175 /* SearchListRow.swift */; };
 		16993C112BE2777C0019F175 /* SearchDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16993C102BE2777C0019F175 /* SearchDetailedView.swift */; };
 		16993C132BE27D1E0019F175 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16993C122BE27D1E0019F175 /* LoadingView.swift */; };
+		16993C172BEA1DAC0019F175 /* ChatbotBackendService.py in Resources */ = {isa = PBXBuildFile; fileRef = 16993C162BEA1DAB0019F175 /* ChatbotBackendService.py */; };
+		16993C192BEBCC1F0019F175 /* ChatbotClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16993C182BEBCC1F0019F175 /* ChatbotClient.swift */; };
+		16993C1E2BEBCD920019F175 /* ChatbotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16993C1D2BEBCD920019F175 /* ChatbotView.swift */; };
+		16993C202BEBCE540019F175 /* ChatbotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16993C1F2BEBCE540019F175 /* ChatbotViewModel.swift */; };
 		16AD04E72BBFCD640064CBD1 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AD04E52BBFCD640064CBD1 /* ExerciseView.swift */; };
 		16AD04E82BBFCD640064CBD1 /* UserRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AD04E62BBFCD640064CBD1 /* UserRoutineView.swift */; };
 		16AD04EA2BBFCFB80064CBD1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16AD04E92BBFCFB80064CBD1 /* GoogleService-Info.plist */; };
@@ -100,6 +104,10 @@
 		16993C0C2BE2757F0019F175 /* SearchListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListRow.swift; sourceTree = "<group>"; };
 		16993C102BE2777C0019F175 /* SearchDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailedView.swift; sourceTree = "<group>"; };
 		16993C122BE27D1E0019F175 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		16993C162BEA1DAB0019F175 /* ChatbotBackendService.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = ChatbotBackendService.py; sourceTree = "<group>"; };
+		16993C182BEBCC1F0019F175 /* ChatbotClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotClient.swift; sourceTree = "<group>"; };
+		16993C1D2BEBCD920019F175 /* ChatbotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotView.swift; sourceTree = "<group>"; };
+		16993C1F2BEBCE540019F175 /* ChatbotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotViewModel.swift; sourceTree = "<group>"; };
 		16AD04E52BBFCD640064CBD1 /* ExerciseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		16AD04E62BBFCD640064CBD1 /* UserRoutineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRoutineView.swift; sourceTree = "<group>"; };
 		16AD04E92BBFCFB80064CBD1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -237,6 +245,32 @@
 			path = Text;
 			sourceTree = "<group>";
 		};
+		16993C142BEA1D590019F175 /* ExternalServices */ = {
+			isa = PBXGroup;
+			children = (
+				16993C152BEA1D630019F175 /* Chatbot */,
+			);
+			path = ExternalServices;
+			sourceTree = "<group>";
+		};
+		16993C152BEA1D630019F175 /* Chatbot */ = {
+			isa = PBXGroup;
+			children = (
+				16993C162BEA1DAB0019F175 /* ChatbotBackendService.py */,
+				16993C182BEBCC1F0019F175 /* ChatbotClient.swift */,
+			);
+			path = Chatbot;
+			sourceTree = "<group>";
+		};
+		16993C1C2BEBCD7D0019F175 /* Chatbot */ = {
+			isa = PBXGroup;
+			children = (
+				16993C1D2BEBCD920019F175 /* ChatbotView.swift */,
+				16993C1F2BEBCE540019F175 /* ChatbotViewModel.swift */,
+			);
+			path = Chatbot;
+			sourceTree = "<group>";
+		};
 		16AD04E42BBFCD640064CBD1 /* Routine */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +333,7 @@
 				0FE81FA62BDA8CBB00F1C43E /* DHC.entitlements */,
 				16AD04E92BBFCFB80064CBD1 /* GoogleService-Info.plist */,
 				0FB075602BB4F6E3002F78B5 /* Info.plist */,
+				16993C142BEA1D590019F175 /* ExternalServices */,
 				16643BFA2BA0978600D9B1C6 /* Models */,
 				16643BF62BA0970300D9B1C6 /* Managers */,
 				16643BF52BA096E900D9B1C6 /* DesignSystems */,
@@ -321,6 +356,7 @@
 		FFF04F1E2B97967400D1F1CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				16993C1C2BEBCD7D0019F175 /* Chatbot */,
 				0F1F580E2BE23BDD009179BC /* Welcome */,
 				0F64BBAC2BDBADF300200B6C /* Award */,
 				6A8991B62BD9C5E60086F14E /* Balance */,
@@ -413,6 +449,7 @@
 				FFF04F182B97964500D1F1CC /* Preview Assets.xcassets in Resources */,
 				FFF04F152B97964400D1F1CC /* Assets.xcassets in Resources */,
 				16AD04EA2BBFCFB80064CBD1 /* GoogleService-Info.plist in Resources */,
+				16993C172BEA1DAC0019F175 /* ChatbotBackendService.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,11 +470,14 @@
 				0FF072A12BDBB5BE0010A6B9 /* SearchViewModel.swift in Sources */,
 				16AD04E72BBFCD640064CBD1 /* ExerciseView.swift in Sources */,
 				16643C4E2BA9857C00D9B1C6 /* Spacing.swift in Sources */,
+				16993C202BEBCE540019F175 /* ChatbotViewModel.swift in Sources */,
 				FFF04F132B97963E00D1F1CC /* HomeView.swift in Sources */,
+				16993C1E2BEBCD920019F175 /* ChatbotView.swift in Sources */,
 				16643C682BA9BBBC00D9B1C6 /* PHPickerView.swift in Sources */,
 				16993C132BE27D1E0019F175 /* LoadingView.swift in Sources */,
 				0F64BBB02BDBAE4600200B6C /* AwardViewModel.swift in Sources */,
 				5F781C022BBF3B3C00D4C149 /* (null) in Sources */,
+				16993C192BEBCC1F0019F175 /* ChatbotClient.swift in Sources */,
 				5F781BF32BBF373B00D4C149 /* PreferencePageView.swift in Sources */,
 				0FCA11912BDB018600142E1D /* RecomendedExerciseView.swift in Sources */,
 				16643C522BA9861600D9B1C6 /* NavigationButtonDS.swift in Sources */,

@@ -31,6 +31,7 @@ struct SearchView: View {
         TextField("Search", text: $searchText)
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .padding(Spacing.spacing_1)
+            .disableAutocorrection(true)
     }
     
     
