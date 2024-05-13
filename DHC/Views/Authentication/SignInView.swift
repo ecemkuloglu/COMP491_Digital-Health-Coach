@@ -24,6 +24,7 @@ struct SignInView: View {
                 .foregroundColor(Color.white)
                 .cornerRadius(10)
                 .autocapitalization(.none)
+                .disableAutocorrection(true)
             
             SecureField("", text: $viewModel.password, prompt: Text("Password...").foregroundColor(Color.white))
                 .padding(Spacing.spacing_2)

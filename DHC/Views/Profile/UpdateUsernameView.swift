@@ -31,6 +31,7 @@ struct UpdateUsernameView: View {
                 .autocapitalization(.none)
                 .padding(Spacing.spacing_1)
                 .foregroundColor(Color.white)
+                .disableAutocorrection(true)
             
             ButtonDS(buttonTitle: "Save") {
                 Task {
