@@ -34,7 +34,7 @@ class MotivationViewModel: ObservableObject {
         content.title = title
         content.body = randomQuote
                
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60*5, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60*30, repeats: true)
                
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
                
@@ -44,7 +44,6 @@ class MotivationViewModel: ObservableObject {
                    } else {
                        print("Notification added succesfully.")
                    }
-
                    
                }
            }

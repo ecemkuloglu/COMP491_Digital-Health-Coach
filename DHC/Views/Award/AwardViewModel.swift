@@ -9,49 +9,45 @@ import Foundation
 import SwiftUI
 import Firebase
 
+// Award Model
+
+struct Award {
+    let title: String
+    let description: String
+    
+}
 class AwardViewModel: ObservableObject {
-    @Published var awards: [Award] = []
-    @Published var badges: [Badge] = [] // Array to hold badge data
-
-    private var storageManager = StorageManager.shared
-    
-    
-    func fetchAwardsAndBadges() {
-        // Fetch awards from wherever you get them
-        awards = [
-            Award(name: "Welcome", badgeId: "welcome_badge", description: "You earn this when you sign up for the app for the first time!", isAchieved: false),
-            Award(name: "1 Week Award", badgeId: "1_week_badge", description: "You earn this when you exercise regularly for one week!", isAchieved: false)
-            // Add more awards as needed
-        ]
-
-        // Fetch badge data for each award
-        for award in awards {
-            fetchBadgeData(badgeId: award.badgeId)
-        }
-    }
-
-    private func fetchBadgeData(badgeId: String) {
-        Task {
-            do {
-                let badgeData = try await storageManager.getBadgeData(badgeId: badgeId, path: "\(badgeId).png")
-                DispatchQueue.main.async {
-                    self.badges.append(Badge(id: badgeId, data: badgeData))
-                }
-            } catch {
-                print("Error fetching badge data: \(error)")
+    @Published var awards: [Award] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
             }
         }
     }
-}
-
-struct Award {
-    let name: String
-    let badgeId: String
-    let description: String
-    var isAchieved: Bool
-}
-
-struct Badge {
-    let id: String
-    let data: Data
+    func updateAwards(exercises: [ExerciseRecordModel]) {
+        DispatchQueue.main.async {
+            self.awards.removeAll()
+            let walkingTheLineCount = exercises.filter { $0.exercise == "Walking the Line" }.count
+            // Check if there are 3 or more exercises named "Walking the Line"
+            if walkingTheLineCount >= 3 {
+                self.awards.append(Award(title: "Increasing Balance with Walking Line", description: "You've demonstrated great balance with walking in the line. Keep it up!"))
+            }
+            if !exercises.isEmpty {
+                self.awards.append(Award(title: "You completed your first exercise!", description: "Congratulations on completing your first exercise. Keep up the good work!"))
+            }
+        }
+    }
+    
+    func fetchAllExercises() async throws -> [ExerciseRecordModel] {
+        return try await ExerciseDoneManager.shared.fetchAllExercises()
+    }
+    
+    func updateAwards() async {
+        do {
+            let exercises = try await fetchAllExercises()
+            updateAwards(exercises: exercises)
+        } catch {
+            print("Error fetching exercises: \(error)")
+        }
+    }
 }
