@@ -13,7 +13,7 @@ struct WelcomeView: View {
     @State private var showAwardView = false
     @ObservedObject var viewAwardModel = AwardViewModel()
     @StateObject private var weatherViewModel = WeatherViewModel()
-
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -25,9 +25,10 @@ struct WelcomeView: View {
                     
                     WeatherSection(weatherViewModel: weatherViewModel)
                     
-                    if let suggestion = weatherViewModel.activitySuggestion, !suggestion.isEmpty {
-                        SuggestionSection(suggestion: suggestion)
-                    }
+                    Text(weatherViewModel.activitySuggestion)
+                        .padding()
+                        .background(Color.green.opacity(0.1))
+                        .cornerRadius(10)
                     
                     NavigationLink(destination: AwardView(viewModel: viewAwardModel), isActive: $showAwardView) {
                         AwardsSection(showAwardView: $showAwardView)
