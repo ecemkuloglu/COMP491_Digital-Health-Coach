@@ -1,4 +1,3 @@
-//
 //  ContentView.swift
 //  DHC
 //
@@ -13,7 +12,6 @@ struct HomeView: View {
     @StateObject var balanceViewModel = BalanceViewModel()
     
     var body: some View {
-        
         ZStack {
             bottomView
         }
@@ -59,7 +57,6 @@ struct HomeView: View {
         .accentColor(.blue)
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

@@ -152,6 +152,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F1BAA152BF502B100E2BFB1 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
 		0F1F580E2BE23BDD009179BC /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +372,7 @@
 		FFF04F1E2B97967400D1F1CC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0F1BAA152BF502B100E2BFB1 /* Info */,
 				16993C1C2BEBCD7D0019F175 /* Chatbot */,
 				0F1F580E2BE23BDD009179BC /* Welcome */,
 				0F64BBAC2BDBADF300200B6C /* Award */,

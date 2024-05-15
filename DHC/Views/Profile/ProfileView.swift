@@ -1,4 +1,3 @@
-//
 //  ProfileView.swift
 //  DHC
 //
@@ -10,50 +9,53 @@ import SwiftUI
 struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
     @Binding var showSignInView: Bool
-    
+    @State private var showInfoView = false  // State to control navigation to InfoView
+
     var body: some View {
-        VStack(spacing: .zero) {
-            HStack {
-                Spacer()
-                infoView
-            }
-            usernameView
-            profilePhoto
-                .onTapGesture {
-                    viewModel.isEditingPhoto = true
+            VStack(spacing: .zero) {
+                HStack {
+                    Spacer()
+                    infoView
                 }
-            NavigationLink(destination: PreferencePageView(preferences: preferences)){
-                Text("Change your preferences")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(10)
+                usernameView
+                profilePhoto
+                    .onTapGesture {
+                        viewModel.isEditingPhoto = true
+                    }
+                NavigationLink(destination: PreferencePageView(preferences: preferences)) {
+                    Text("Change your preferences")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                Spacer()
+                buttonView
+                Spacer()
             }
-            Spacer()
-            buttonView
-            Spacer()
-        }
-        .task {
-            try? await viewModel.loadCurrentUser()
-            if let user = viewModel.user, let path = viewModel.user?.photoUrl {
-                let data = try? await StorageManager.shared.getData(userId: user.userId, path: path)
-                viewModel.imageData = data
+            .task {
+                try? await viewModel.loadCurrentUser()
+                if let user = viewModel.user, let path = viewModel.user?.photoUrl {
+                    let data = try? await StorageManager.shared.getData(userId: user.userId, path: path)
+                    viewModel.imageData = data
+                }
             }
-        }
-        .sheet(isPresented: $viewModel.isEditingPhoto) {
-            UpdateUserPhotoView(viewModel: viewModel)
-        }
-        .sheet(isPresented: $viewModel.isEditingUsername) {
-            UpdateUsernameView(viewModel: viewModel)
-        }
-        .navigationTitle("Profile")
+            .sheet(isPresented: $viewModel.isEditingPhoto) {
+                UpdateUserPhotoView(viewModel: viewModel)
+            }
+            .sheet(isPresented: $viewModel.isEditingUsername) {
+                UpdateUsernameView(viewModel: viewModel)
+            }
+            .navigationTitle("Profile")
+            .background(NavigationLink(destination: InfoView(), isActive: $showInfoView) { EmptyView() })
+        
     }
     
     private var infoView: some View {
         Image(systemName: "info.circle")
             .foregroundColor(.blue)
             .onTapGesture {
-                viewModel.isInfo = true
+                showInfoView = true  // Activate navigation to InfoView
             }
             .popover(isPresented: $viewModel.isInfo) {
                 Text("Tap on the picture or username to edit them")
@@ -119,3 +121,18 @@ struct ProfileView_Previews: PreviewProvider {
         ProfileView(showSignInView: .constant(true))
     }
 }
+
+
+
+struct InfoView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Dear user, \nTime to Move! prioritizes being a health coach to everyone who wants to live a healthy life. For us to be able to help you efficiently, we would like you to enter your preferences to your profile so that we can recommend exercises to you that you would want. You can find your preferences settings on your profile. You can find the recommended exercises on your routine page. \nTo be able to save your progression you can save exercises which you have done and their duration. You can find the completed exercises on your routine page. \n You can choose exercises that you want to do from the routine page and add them to your saved exercises, which is also on the routine page.\n Time to Move! allows you to measure your balance, and to see your progress on your balance you can do the “Balance Test”. ")
+                .font(.body)
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+            Spacer()
+        }
+    }
+}
+
