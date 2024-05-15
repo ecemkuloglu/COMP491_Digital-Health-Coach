@@ -22,6 +22,18 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         }
         UNUserNotificationCenter.current().delegate = self
         MotivationViewModel().sendMotivationQuote()
+        
+        //Task {
+        //          do {
+        //            let exercises = try await ExerciseDoneManager.shared.fetchAllExercises()
+        //          exercises.forEach { exercise in
+        //            print("Exercise: \(exercise.exercise), Duration: \(exercise.duration), Date: \(exercise.date)")
+        //    }
+        //} catch {
+        //  print("Error fetching exercises: \(error)")
+        //}
+        //}
+        
         return true
         
     }
