@@ -45,7 +45,7 @@ struct HomeView: View {
                 .tag(3)
             ChatbotView()
                 .tabItem {
-                    Image(systemName: "star")
+                    Image(systemName: "circle.badge.questionmark.fill")
                 }
                 .tag(4)
             ProfileView(showSignInView: $showSignInView)

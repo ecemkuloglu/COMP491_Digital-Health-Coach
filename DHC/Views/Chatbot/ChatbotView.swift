@@ -19,15 +19,26 @@ struct ChatbotView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(viewModel.chatHistory, id: \.self) { message in
-                        Text(message.text)
-                            .foregroundColor(message.isFromUser ? Color.blue : Color.black)
-                            .padding(Spacing.spacing_2)
-                            .background(message.isFromUser ? Color.gray.opacity(0.2) : Color.white)
-                            .cornerRadius(Radius.radius_2)
-                            .padding(.horizontal, Spacing.spacing_2)
+            ScrollViewReader { scrollViewProxy in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 10) {
+                        ForEach(viewModel.chatHistory, id: \.id) { message in
+                            Text(message.text)
+                                .foregroundColor(message.isFromUser ? Color.blue : Color.black)
+                                .padding(Spacing.spacing_2)
+                                .background(message.isFromUser ? Color.gray.opacity(0.2) : Color.white)
+                                .cornerRadius(Radius.radius_2)
+                                .padding(.horizontal, Spacing.spacing_2)
+                                .id(message.id) // Assign unique id to each message
+                        }
+                    }
+                    .onChange(of: viewModel.chatHistory) { _ in
+                        // Scroll to the bottom when chat history changes
+                        if let lastMessage = viewModel.chatHistory.last {
+                            withAnimation {
+                                scrollViewProxy.scrollTo(lastMessage.id, anchor: .bottom)
+                            }
+                        }
                     }
                 }
             }

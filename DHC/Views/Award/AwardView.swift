@@ -16,7 +16,6 @@ struct AwardView: View {
         VStack {
             Text("Awards").font(.title)
             if viewModel.awards.isEmpty {
-                
                 Text("There is no awards earned. To earn awards keep doing exercises")
                     .onAppear {
                         Task {
