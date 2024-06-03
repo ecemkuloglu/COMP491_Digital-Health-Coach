@@ -13,32 +13,31 @@ struct AwardView: View {
     @ObservedObject var viewModel: AwardViewModel
     
     var body: some View {
-        VStack {
-            Text("Awards").font(.title)
-            if viewModel.awards.isEmpty {
-                Text("There is no awards earned. To earn awards keep doing exercises")
-                    .onAppear {
-                        Task {
-                            await viewModel.updateAwards()
-                            
+        ScrollView {
+            VStack {
+                Text("Awards").font(.title)
+                if viewModel.awards.isEmpty {
+                    Text("There are no awards earned. To earn awards keep doing exercises")
+                        .onAppear {
+                            Task {
+                                await viewModel.updateAwards()
+                            }
                         }
-                    }
-            } else {
-                ForEach(viewModel.awards, id: \.title) { award in
-                    VStack(alignment: .leading) {
-                        Text(award.title).font(.headline)
-                        Text(award.description).font(.subheadline).foregroundColor(.gray)
-                        
-                    }.padding()
+                } else {
+                    ForEach(viewModel.awards, id: \.title) { award in
+                        VStack(alignment: .leading) {
+                            Text(award.title).font(.headline)
+                            Text(award.description).font(.subheadline).foregroundColor(.gray)
+                        }
+                        .padding()
                         .background(Color(UIColor.systemBackground))
                         .cornerRadius(10)
                         .shadow(radius: 5)
                         .padding()
+                    }
                 }
             }
-            
-        }.padding()
-        
+            .padding()
+        }
     }
-    
 }
