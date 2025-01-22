@@ -1,8 +1,8 @@
 # COMP491_Digital-Health-Coach
 
 
-**Team**
-Aylin Melek, Ecem Kuloğlu, Gülbarin Maçin, Korhan Derin Özarslan
+**Team:****
+Aylin Melek, Ecem Kuloğlu, Gülbarin Maçin, Korhan Derin Özarslan**
 
 The main purpose of our project is to encourage people who want to start a more active
 life but cannot find motivation, who find the motivation to start but do not continue, to
